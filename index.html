@@ -1,0 +1,2638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norske Verb — Aprende verbos noruegos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f1e8;
+  --bg-warm: #ede5d3;
+  --ink: #0d1f2d;
+  --ink-soft: #2a4053;
+  --ink-muted: #5a6e7e;
+  --paper: #fbf8f0;
+  --rule: #cdc4ac;
+  --accent: #1a4d5c;
+  --accent-dark: #0f3540;
+  --aurora: #5b8c6c;
+  --aurora-soft: #cfe0d4;
+  --coral: #c4513c;
+  --coral-soft: #f4d8cd;
+  --amber: #b08846;
+  --amber-soft: #efe2c5;
+  --gold: #8a6d2e;
+  --shadow: 0 1px 3px rgba(13, 31, 45, 0.08), 0 8px 24px rgba(13, 31, 45, 0.06);
+  --shadow-lg: 0 4px 12px rgba(13, 31, 45, 0.10), 0 24px 48px rgba(13, 31, 45, 0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(26, 77, 92, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 100% 100%, rgba(176, 136, 70, 0.06), transparent 60%),
+    var(--bg);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ==== HEADER ==== */
+header.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.brand h1 {
+  font-family: 'Fraunces', serif;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.brand h1 em {
+  font-style: normal;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+}
+
+.brand .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--coral);
+  display: inline-block;
+}
+
+.subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+
+.meta-strip {
+  display: flex;
+  gap: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+}
+
+.meta-strip .num {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ==== TABS ==== */
+nav.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  nav.tabs { grid-template-columns: repeat(2, 1fr); }
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--rule);
+  padding: 18px 14px;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab:last-child { border-right: none; }
+
+@media (max-width: 700px) {
+  .tab:nth-child(2) { border-right: none; }
+  .tab:nth-child(1), .tab:nth-child(2) { border-bottom: 1px solid var(--rule); }
+}
+
+.tab:hover { background: var(--bg-warm); }
+
+.tab.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tab .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+.tab .label {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.tab .hint {
+  font-size: 11px;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* ==== PANELS ==== */
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== CARD / PROMPT ==== */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.card.large { padding: 48px 36px; }
+
+@media (max-width: 600px) {
+  .card { padding: 24px 20px; }
+  .card.large { padding: 28px 22px; }
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+
+.kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.kicker.aurora { color: var(--aurora); border-color: var(--aurora); }
+.kicker.coral { color: var(--coral); border-color: var(--coral); }
+.kicker.amber { color: var(--amber); border-color: var(--amber); }
+
+/* ==== INFINITIVE PROMPT ==== */
+.infinitive-display {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(38px, 7vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 8px 0 18px;
+}
+
+.infinitive-display .a-particle {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-muted);
+  margin-right: 8px;
+}
+
+.translation {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+/* ==== INPUT FORM ==== */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .input-grid { grid-template-columns: 1fr; }
+}
+
+.field label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+
+.field label .es {
+  color: var(--ink-muted);
+  opacity: 0.75;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-style: italic;
+  font-family: 'Fraunces', serif;
+  font-size: 11px;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  background: var(--bg);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--ink);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--paper);
+  box-shadow: 0 0 0 3px rgba(26, 77, 92, 0.1);
+}
+
+.field input.ok {
+  border-color: var(--aurora);
+  background: var(--aurora-soft);
+  color: var(--accent-dark);
+}
+
+.field input.bad {
+  border-color: var(--coral);
+  background: var(--coral-soft);
+}
+
+/* ==== BUTTONS ==== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn.secondary:hover { background: var(--ink); color: var(--paper); }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1px solid var(--rule);
+}
+.btn.ghost:hover { background: var(--bg-warm); color: var(--ink); }
+
+.btn.aurora {
+  background: var(--aurora);
+}
+.btn.aurora:hover { background: #4a7459; }
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ==== SETTINGS BAR ==== */
+.settings-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 24px;
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+}
+.setting-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.setting-toggle input { display: none; }
+.toggle-track {
+  width: 36px; height: 20px;
+  border-radius: 10px;
+  background: var(--rule);
+  position: relative;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.setting-toggle input:checked + .toggle-track { background: var(--teal); }
+.toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left .2s;
+}
+.setting-toggle input:checked + .toggle-track .toggle-thumb { left: 19px; }
+.setting-label { color: var(--ink-muted); }
+.setting-label b { color: var(--ink); }
+
+/* ==== FEEDBACK ==== */
+.feedback {
+  margin-top: 18px;
+  padding: 18px 22px;
+  border-radius: 2px;
+  border-left: 3px solid;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  line-height: 1.55;
+  display: none;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.feedback.show { display: block; }
+
+.feedback.correct {
+  background: var(--aurora-soft);
+  border-color: var(--aurora);
+  color: var(--accent-dark);
+}
+
+.feedback.incorrect {
+  background: var(--coral-soft);
+  border-color: var(--coral);
+  color: #6b2517;
+}
+
+.feedback strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.feedback .form-list {
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(255,255,255,0.5);
+  padding: 10px 12px;
+  border-radius: 2px;
+}
+.feedback .form-list span { color: var(--ink-muted); }
+.feedback .form-list b { color: var(--ink); font-weight: 600; }
+
+/* ==== PROGRESS / STATS ==== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat {
+  background: var(--paper);
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.stat .stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.stat .stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.stat .stat-value.aurora { color: var(--aurora); }
+.stat .stat-value.coral { color: var(--coral); }
+
+.progress-track {
+  height: 6px;
+  background: var(--bg-warm);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--aurora));
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 3px;
+}
+
+/* ==== LEVEL BANNER ==== */
+.level-banner {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 22px 26px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.level-banner .level-info { }
+.level-banner .level-info .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+.level-banner .level-info .title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+}
+.level-banner .level-info .title b {
+  font-style: normal;
+  color: #d4b88f;
+}
+
+/* ==== LEVEL UP CELEBRATION ==== */
+.celebration {
+  background: linear-gradient(135deg, var(--aurora) 0%, var(--accent) 100%);
+  color: var(--paper);
+  padding: 36px 32px;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.celebration h2 {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.celebration p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+.celebration .button-row { justify-content: center; }
+.celebration .btn { background: var(--paper); color: var(--ink); }
+.celebration .btn:hover { background: #fff; }
+.celebration .btn.ghost { background: transparent; color: var(--paper); border-color: rgba(255,255,255,0.4); }
+.celebration .btn.ghost:hover { background: rgba(255,255,255,0.1); }
+
+/* ==== MODULE 3 SENTENCE ==== */
+.sentence {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 3.5vw, 30px);
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 16px 0 24px;
+  color: var(--ink);
+}
+
+.sentence .blank-spot {
+  display: inline-block;
+  background: var(--bg-warm);
+  border-bottom: 2px solid var(--accent);
+  padding: 0 14px;
+  min-width: 110px;
+  border-radius: 2px 2px 0 0;
+}
+
+.sentence .blank-spot input {
+  border: none;
+  background: transparent;
+  font-family: 'Fraunces', serif;
+  font-size: inherit;
+  color: var(--ink);
+  width: auto;
+  min-width: 80px;
+  padding: 2px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.sentence .blank-spot input:focus {
+  outline: none;
+}
+
+.sentence .blank-spot.ok {
+  background: var(--aurora-soft);
+  border-color: var(--aurora);
+}
+
+.sentence .blank-spot.bad {
+  background: var(--coral-soft);
+  border-color: var(--coral);
+}
+
+.hint-row {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 4px 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hint-row .h {
+  background: var(--bg-warm);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.hint-row .h b { color: var(--accent); font-weight: 600; }
+.hint-row .h.tense-pres b { color: var(--accent); }
+.hint-row .h.tense-pret b { color: var(--amber); }
+.hint-row .h.tense-inf b { color: var(--aurora); }
+
+.translation-line {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-muted);
+  padding-top: 14px;
+  border-top: 1px dashed var(--rule);
+  margin-top: 16px;
+}
+
+/* ==== MODULE 4 - DICTIONARY ==== */
+.dict-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  align-items: center;
+}
+
+.dict-controls .search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.dict-controls input[type="text"] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.dict-controls input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sort-buttons button {
+  background: var(--paper);
+  border: none;
+  padding: 11px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-soft);
+  transition: all 0.2s ease;
+}
+
+.sort-buttons button:last-child { border-right: none; }
+.sort-buttons button:hover { background: var(--bg-warm); }
+.sort-buttons button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.dict-stats {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+}
+
+.dict-table {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dict-row {
+  display: grid;
+  grid-template-columns: 60px 1.5fr 1fr 1fr 1fr 2fr;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  padding: 0;
+  transition: background 0.15s ease;
+}
+
+.dict-row:last-child { border-bottom: none; }
+.dict-row:hover { background: var(--bg-warm); }
+
+.dict-row.header {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.dict-row.header:hover { background: var(--ink); }
+
+.dict-row > div {
+  padding: 12px 14px;
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+}
+
+.dict-row > div:last-child { border-right: none; }
+
+.dict-row.header > div {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+.dict-row .grp {
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--accent);
+}
+
+.dict-row .grp.g1 { background: #4a7c59; }
+.dict-row .grp.g2 { background: var(--accent); }
+.dict-row .grp.g3 { background: var(--amber); }
+.dict-row .grp.g4 { background: #8a6b9c; }
+.dict-row .grp.irr { background: var(--coral); }
+
+.dict-row .es {
+  color: var(--ink-muted);
+  font-style: italic;
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .dict-row {
+    grid-template-columns: 50px 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .dict-row .grp { grid-row: 1 / 3; }
+  .dict-row .es { grid-column: 1 / -1; padding-top: 0; padding-bottom: 12px; border-top: 1px dashed var(--rule); padding-left: 70px; }
+  .dict-row.header .es { display: none; }
+  .dict-row.header { grid-template-columns: 50px 1fr 1fr; }
+}
+
+/* ==== EMPTY STATE / INFO ==== */
+.info-block {
+  padding: 18px 22px;
+  background: var(--bg-warm);
+  border-left: 3px solid var(--amber);
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.info-block b {
+  font-style: normal;
+  color: var(--ink);
+}
+
+/* ==== TIPS / HINTS ==== */
+.group-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-right: 8px;
+  background: var(--bg-warm);
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+}
+
+.group-tag.g1 { background: #e0ebe3; border-color: #4a7c59; color: #2e4a37; }
+.group-tag.g2 { background: #d8e4e8; border-color: var(--accent); color: var(--accent-dark); }
+.group-tag.g3 { background: var(--amber-soft); border-color: var(--amber); color: #6b521e; }
+.group-tag.g4 { background: #e8dded; border-color: #8a6b9c; color: #533866; }
+.group-tag.irr { background: var(--coral-soft); border-color: var(--coral); color: #6b2517; }
+
+/* ==== FOOTER ==== */
+footer.foot {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+footer.foot a {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer.foot a:hover { text-decoration: underline; }
+
+/* ==== UTILITY ==== */
+.spacer { height: 18px; }
+
+.hidden { display: none !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-warm); }
+::-webkit-scrollbar-thumb { background: var(--ink-muted); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+
+/* Module 1 specific level-list */
+.level-list {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--paper);
+  opacity: 0.8;
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="masthead">
+  <div>
+    <div class="brand">
+      <h1>Norske <em>Verb</em><span class="dot"></span></h1>
+    </div>
+    <div class="subtitle">— Aprende los verbos noruegos paso a paso</div>
+  </div>
+  <div class="meta-strip">
+    <span><span class="num" id="meta-total">·</span> verbos</span>
+    <span><span class="num" id="meta-progress">·</span> aprendidos</span>
+  </div>
+</header>
+
+<div class="settings-bar" id="settings-bar">
+  <label class="setting-toggle" title="Si está activo, el infinitivo debe incluir 'å' (ej: å bo). Si está desactivado, solo la raíz (bo).">
+    <input type="checkbox" id="setting-ask-a" checked onchange="saveSettings()">
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    <span class="setting-label">Pedir <b>å</b> en el infinitivo</span>
+  </label>
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="m1">
+    <span class="num">01 / Modul</span>
+    <span class="label">Aprendizaje progresivo</span>
+    <span class="hint">3 verbos por grupo, sube al 100%</span>
+  </button>
+  <button class="tab" data-tab="m2">
+    <span class="num">02 / Modul</span>
+    <span class="label">Práctica aleatoria</span>
+    <span class="hint">Todos los verbos, orden mezclado</span>
+  </button>
+  <button class="tab" data-tab="m3">
+    <span class="num">03 / Modul</span>
+    <span class="label">Frases con huecos</span>
+    <span class="hint">Conjuga el verbo en contexto</span>
+  </button>
+  <button class="tab" data-tab="m4">
+    <span class="num">04 / Modul</span>
+    <span class="label">Diccionario</span>
+    <span class="hint">Busca y ordena los verbos</span>
+  </button>
+</nav>
+
+<!-- ============= MODULE 1 ============= -->
+<section class="panel active" id="panel-m1">
+  <div id="m1-content"></div>
+</section>
+
+<!-- ============= MODULE 2 ============= -->
+<section class="panel" id="panel-m2">
+  <div id="m2-content"></div>
+</section>
+
+<!-- ============= MODULE 3 ============= -->
+<section class="panel" id="panel-m3">
+  <div id="m3-content"></div>
+</section>
+
+<!-- ============= MODULE 4 ============= -->
+<section class="panel" id="panel-m4">
+  <div id="m4-content"></div>
+</section>
+
+<footer class="foot">
+  <p>Aprende noruego con paciencia, como el sol del invierno ártico —<br>
+  poco a poco, pero seguro. <a id="reset-link">Reiniciar progreso</a></p>
+</footer>
+
+<!-- Modal overlay -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:none;align-items:center;justify-content:center;">
+  <div id="modal-box" style="background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:32px;max-width:420px;width:90%;font-family:'DM Sans',sans-serif;">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+/* ============================================================
+   VERB DATABASE
+   group: 1 | 2 | 3 | 4 | 'irr'
+   noter: true if from "Notater A1 B" (the structured course list)
+   noterOrder: position within Notater list (for progressive learning)
+   ============================================================ */
+
+const VERBS = [
+  // === GROUP 1 -et (Notater first 3 + extras) ===
+  { inf: "å jobbe", pres: "jobber", pret: "jobbet", perf: "jobbet", group: 1, es: "trabajar", noter: true, noterOrder: 1 },
+  { inf: "å arbeide", pres: "arbeider", pret: "arbeidet", perf: "arbeidet", group: 1, es: "trabajar", noter: true, noterOrder: 2 },
+  { inf: "å snakke", pres: "snakker", pret: "snakket", perf: "snakket", group: 1, es: "hablar", noter: true, noterOrder: 3 },
+  { inf: "å prate", pres: "prater", pret: "pratet", perf: "pratet", group: 1, es: "charlar, hablar", noter: true, noterOrder: 4 },
+  { inf: "å vaske", pres: "vasker", pret: "vasket", perf: "vasket", group: 1, es: "lavar", noter: true, noterOrder: 5 },
+  { inf: "å slappe av", pres: "slapper av", pret: "slappet av", perf: "slappet av", group: 1, es: "relajarse", noter: true, noterOrder: 6 },
+  { inf: "å dusje", pres: "dusjer", pret: "dusjet", perf: "dusjet", group: 1, es: "ducharse", noter: true, noterOrder: 7 },
+  { inf: "å sminke seg", pres: "sminker seg", pret: "sminket seg", perf: "sminket seg", group: 1, es: "maquillarse", noter: true, noterOrder: 8 },
+  { inf: "å starte", pres: "starter", pret: "startet", perf: "startet", group: 1, es: "empezar", noter: true, noterOrder: 9 },
+  { inf: "å lage", pres: "lager", pret: "laget", perf: "laget", group: 1, es: "preparar, hacer", noter: true, noterOrder: 10 },
+  { inf: "å støvsuge", pres: "støvsuger", pret: "støvsuget", perf: "støvsuget", group: 1, es: "aspirar (el polvo)", noter: true, noterOrder: 11 },
+  { inf: "å glede seg", pres: "gleder seg", pret: "gledet seg", perf: "gledet seg", group: 1, es: "alegrarse, ilusionarse", noter: true, noterOrder: 12 },
+
+  // === GROUP 2 -te (Notater) ===
+  { inf: "å spise", pres: "spiser", pret: "spiste", perf: "spist", group: 2, es: "comer", noter: true, noterOrder: 13 },
+  { inf: "å reise", pres: "reiser", pret: "reiste", perf: "reist", group: 2, es: "viajar", noter: true, noterOrder: 14 },
+  { inf: "å kjøpe", pres: "kjøper", pret: "kjøpte", perf: "kjøpt", group: 2, es: "comprar", noter: true, noterOrder: 15 },
+  { inf: "å kjøre", pres: "kjører", pret: "kjørte", perf: "kjørt", group: 2, es: "conducir", noter: true, noterOrder: 16 },
+  { inf: "å leke", pres: "leker", pret: "lekte", perf: "lekt", group: 2, es: "jugar (juegos infantiles)", noter: true, noterOrder: 17 },
+  { inf: "å lese", pres: "leser", pret: "leste", perf: "lest", group: 2, es: "leer", noter: true, noterOrder: 18 },
+  { inf: "å studere", pres: "studerer", pret: "studerte", perf: "studert", group: 2, es: "estudiar", noter: true, noterOrder: 19 },
+  { inf: "å lære", pres: "lærer", pret: "lærte", perf: "lært", group: 2, es: "aprender, enseñar", noter: true, noterOrder: 20 },
+  { inf: "å spille", pres: "spiller", pret: "spilte", perf: "spilt", group: 2, es: "jugar, tocar (instrumento)", noter: true, noterOrder: 21 },
+  { inf: "å svømme", pres: "svømmer", pret: "svømte", perf: "svømt", group: 2, es: "nadar", noter: true, noterOrder: 22 },
+  { inf: "å begynne", pres: "begynner", pret: "begynte", perf: "begynt", group: 2, es: "empezar", noter: true, noterOrder: 23 },
+  { inf: "å vite", pres: "vet", pret: "visste", perf: "visst", group: 2, es: "saber (conocimiento)", noter: true, noterOrder: 24, note: "Excepción: presente irregular vet, pretérito visste" },
+  { inf: "å selge", pres: "selger", pret: "solgte", perf: "solgt", group: 2, es: "vender", noter: true, noterOrder: 25, note: "Excepción: cambia la vocal (sel- → solg-)" },
+
+  // === GROUP 3 -de (Notater) ===
+  { inf: "å leie", pres: "leier", pret: "leide", perf: "leid", group: 3, es: "alquilar", noter: true, noterOrder: 26 },
+  { inf: "å eie", pres: "eier", pret: "eide", perf: "eid", group: 3, es: "poseer", noter: true, noterOrder: 27 },
+  { inf: "å pleie", pres: "pleier", pret: "pleide", perf: "pleid", group: 3, es: "soler, cuidar", noter: true, noterOrder: 28 },
+  { inf: "å prøve", pres: "prøver", pret: "prøvde", perf: "prøvd", group: 3, es: "probar, intentar", noter: true, noterOrder: 29 },
+  { inf: "å leve", pres: "lever", pret: "levde", perf: "levd", group: 3, es: "vivir (estar vivo)", noter: true, noterOrder: 30 },
+  { inf: "å gjøre", pres: "gjør", pret: "gjorde", perf: "gjort", group: 3, es: "hacer", noter: true, noterOrder: 31, note: "Excepción del grupo 3: cambia la vocal y termina en -de" },
+
+  // === GROUP 4 -dde (Notater) ===
+  { inf: "å ha", pres: "har", pret: "hadde", perf: "hatt", group: 4, es: "tener, haber", noter: true, noterOrder: 32 },
+  { inf: "å bo", pres: "bor", pret: "bodde", perf: "bodd", group: 4, es: "vivir, residir", noter: true, noterOrder: 33 },
+  { inf: "å kle seg", pres: "kler seg", pret: "kledde seg", perf: "kledd seg", group: 4, es: "vestirse", noter: true, noterOrder: 34 },
+  { inf: "å tro", pres: "tror", pret: "trodde", perf: "trodd", group: 4, es: "creer, pensar", noter: true, noterOrder: 35 },
+  { inf: "å snø", pres: "snør", pret: "snødde", perf: "snødd", group: 4, es: "nevar", noter: true, noterOrder: 36 },
+  { inf: "å bety", pres: "betyr", pret: "betydde", perf: "betydd", group: 4, es: "significar", noter: true, noterOrder: 37, note: "Excepción del grupo 4: no es monosílabo pero sigue el patrón -dde" },
+
+  // === IRREGULAR (Notater) ===
+  { inf: "å dra", pres: "drar", pret: "dro", perf: "dratt", group: "irr", es: "ir, salir, irse", noter: true, noterOrder: 38 },
+  { inf: "å være", pres: "er", pret: "var", perf: "vært", group: "irr", es: "ser, estar, existir", noter: true, noterOrder: 39 },
+  { inf: "å gå", pres: "går", pret: "gikk", perf: "gått", group: "irr", es: "ir, caminar", noter: true, noterOrder: 40 },
+  { inf: "å gi", pres: "gir", pret: "ga", perf: "gitt", group: "irr", es: "dar", noter: true, noterOrder: 41 },
+  { inf: "å drikke", pres: "drikker", pret: "drakk", perf: "drukket", group: "irr", es: "beber", noter: true, noterOrder: 42 },
+  { inf: "å komme", pres: "kommer", pret: "kom", perf: "kommet", group: "irr", es: "venir", noter: true, noterOrder: 43 },
+  { inf: "å sove", pres: "sover", pret: "sov", perf: "sovet", group: "irr", es: "dormir", noter: true, noterOrder: 44 },
+  { inf: "å stå opp", pres: "står opp", pret: "sto opp", perf: "stått opp", group: "irr", es: "levantarse (de la cama)", noter: true, noterOrder: 45 },
+  { inf: "å legge seg", pres: "legger seg", pret: "la seg", perf: "lagt seg", group: "irr", es: "acostarse, irse a la cama", noter: true, noterOrder: 46 },
+  { inf: "å forstå", pres: "forstår", pret: "forsto", perf: "forstått", group: "irr", es: "entender, comprender", noter: true, noterOrder: 47 },
+
+  // ====== ADDITIONAL VERBS BEYOND THE NOTATER LIST ======
+  // Group 1
+  { inf: "å bade", pres: "bader", pret: "badet", perf: "badet", group: 1, es: "bañarse" },
+  { inf: "å banke", pres: "banker", pret: "banket", perf: "banket", group: 1, es: "golpear" },
+  { inf: "å bjeffe", pres: "bjeffer", pret: "bjeffet", perf: "bjeffet", group: 1, es: "ladrar" },
+  { inf: "å blande", pres: "blander", pret: "blandet", perf: "blandet", group: 1, es: "mezclar" },
+  { inf: "å bytte", pres: "bytter", pret: "byttet", perf: "byttet", group: 1, es: "cambiar, intercambiar" },
+  { inf: "å danse", pres: "danser", pret: "danset", perf: "danset", group: 1, es: "bailar" },
+  { inf: "å dyrke", pres: "dyrker", pret: "dyrket", perf: "dyrket", group: 1, es: "cultivar" },
+  { inf: "å dytte", pres: "dytter", pret: "dyttet", perf: "dyttet", group: 1, es: "empujar" },
+  { inf: "å elske", pres: "elsker", pret: "elsket", perf: "elsket", group: 1, es: "amar, querer" },
+  { inf: "å feire", pres: "feirer", pret: "feiret", perf: "feiret", group: 1, es: "celebrar" },
+  { inf: "å fiske", pres: "fisker", pret: "fisket", perf: "fisket", group: 1, es: "pescar" },
+  { inf: "å flykte", pres: "flykter", pret: "flyktet", perf: "flyktet", group: 1, es: "huir" },
+  { inf: "å flytte", pres: "flytter", pret: "flyttet", perf: "flyttet", group: 1, es: "mover, mudarse" },
+  { inf: "å gifte seg", pres: "gifter seg", pret: "giftet seg", perf: "giftet seg", group: 1, es: "casarse" },
+  { inf: "å gjette", pres: "gjetter", pret: "gjettet", perf: "gjettet", group: 1, es: "adivinar, suponer" },
+  { inf: "å handle", pres: "handler", pret: "handlet", perf: "handlet", group: 1, es: "comprar, hacer la compra; actuar" },
+  { inf: "å hente", pres: "henter", pret: "hentet", perf: "hentet", group: 1, es: "ir a buscar, recoger" },
+  { inf: "å hilse", pres: "hilser", pret: "hilste", perf: "hilst", group: 2, es: "saludar" },
+  { inf: "å hindre", pres: "hindrer", pret: "hindret", perf: "hindret", group: 1, es: "impedir, prevenir" },
+  { inf: "å hoppe", pres: "hopper", pret: "hoppet", perf: "hoppet", group: 1, es: "saltar" },
+  { inf: "å hoste", pres: "hoster", pret: "hostet", perf: "hostet", group: 1, es: "toser" },
+  { inf: "å huske", pres: "husker", pret: "husket", perf: "husket", group: 1, es: "recordar" },
+  { inf: "å håpe", pres: "håper", pret: "håpet", perf: "håpet", group: 1, es: "esperar (tener esperanza)" },
+  { inf: "å jakte", pres: "jakter", pret: "jaktet", perf: "jaktet", group: 1, es: "cazar" },
+  { inf: "å jogge", pres: "jogger", pret: "jogget", perf: "jogget", group: 1, es: "correr (jogging)" },
+  { inf: "å kaste", pres: "kaster", pret: "kastet", perf: "kastet", group: 1, es: "tirar, lanzar" },
+  { inf: "å kikke", pres: "kikker", pret: "kikket", perf: "kikket", group: 1, es: "echar un vistazo" },
+  { inf: "å klappe", pres: "klapper", pret: "klappet", perf: "klappet", group: 1, es: "aplaudir" },
+  { inf: "å klatre", pres: "klatrer", pret: "klatret", perf: "klatret", group: 1, es: "trepar, escalar" },
+  { inf: "å koste", pres: "koster", pret: "kostet", perf: "kostet", group: 1, es: "costar" },
+  { inf: "å krangle", pres: "krangler", pret: "kranglet", perf: "kranglet", group: 1, es: "discutir, pelearse" },
+  { inf: "å krysse", pres: "krysser", pret: "krysset", perf: "krysset", group: 1, es: "cruzar" },
+  { inf: "å kysse", pres: "kysser", pret: "kysset", perf: "kysset", group: 1, es: "besar" },
+  { inf: "å laste ned", pres: "laster ned", pret: "lastet ned", perf: "lastet ned", group: 1, es: "descargar (un archivo)" },
+  { inf: "å ligne", pres: "ligner", pret: "lignet", perf: "lignet", group: 1, es: "parecerse a" },
+  { inf: "å lufte", pres: "lufter", pret: "luftet", perf: "luftet", group: 1, es: "ventilar" },
+  { inf: "å lukte", pres: "lukter", pret: "luktet", perf: "luktet", group: 1, es: "oler" },
+  { inf: "å lytte", pres: "lytter", pret: "lyttet", perf: "lyttet", group: 1, es: "escuchar" },
+  { inf: "å løfte", pres: "løfter", pret: "løftet", perf: "løftet", group: 1, es: "levantar, alzar" },
+  { inf: "å love", pres: "lover", pret: "lovet", perf: "lovet", group: 1, es: "prometer" },
+  { inf: "å merke", pres: "merker", pret: "merket", perf: "merket", group: 1, es: "notar, marcar" },
+  { inf: "å miste", pres: "mister", pret: "mistet", perf: "mistet", group: 1, es: "perder" },
+  { inf: "å nekte", pres: "nekter", pret: "nektet", perf: "nektet", group: 1, es: "negar(se)" },
+  { inf: "å oppdage", pres: "oppdager", pret: "oppdaget", perf: "oppdaget", group: 1, es: "descubrir" },
+  { inf: "å overnatte", pres: "overnatter", pret: "overnattet", perf: "overnattet", group: 1, es: "pasar la noche" },
+  { inf: "å pakke", pres: "pakker", pret: "pakket", perf: "pakket", group: 1, es: "empaquetar, hacer la maleta" },
+  { inf: "å passe", pres: "passer", pret: "passet", perf: "passet", group: 1, es: "encajar, sentar bien; cuidar" },
+  { inf: "å plystre", pres: "plystrer", pret: "plystret", perf: "plystret", group: 1, es: "silbar" },
+  { inf: "å pusse", pres: "pusser", pret: "pusset", perf: "pusset", group: 1, es: "limpiar, pulir" },
+  { inf: "å puste", pres: "puster", pret: "pustet", perf: "pustet", group: 1, es: "respirar" },
+  { inf: "å putte", pres: "putter", pret: "puttet", perf: "puttet", group: 1, es: "poner, meter" },
+  { inf: "å pynte", pres: "pynter", pret: "pyntet", perf: "pyntet", group: 1, es: "decorar, adornar" },
+  { inf: "å regne", pres: "regner", pret: "regnet", perf: "regnet", group: 1, es: "llover" },
+  { inf: "å rense", pres: "renser", pret: "renset", perf: "renset", group: 1, es: "limpiar" },
+  { inf: "å rette", pres: "retter", pret: "rettet", perf: "rettet", group: 1, es: "corregir, alinear" },
+  { inf: "å rope", pres: "roper", pret: "ropte", perf: "ropt", group: 2, es: "gritar, llamar a voces" },
+  { inf: "å rydde", pres: "rydder", pret: "ryddet", perf: "ryddet", group: 1, es: "ordenar, recoger" },
+  { inf: "å samarbeide", pres: "samarbeider", pret: "samarbeidet", perf: "samarbeidet", group: 1, es: "colaborar" },
+  { inf: "å samle", pres: "samler", pret: "samlet", perf: "samlet", group: 1, es: "recoger, coleccionar" },
+  { inf: "å savne", pres: "savner", pret: "savnet", perf: "savnet", group: 1, es: "echar de menos" },
+  { inf: "å sjekke", pres: "sjekker", pret: "sjekket", perf: "sjekket", group: 1, es: "comprobar" },
+  { inf: "å skifte", pres: "skifter", pret: "skiftet", perf: "skiftet", group: 1, es: "cambiar" },
+  { inf: "å smake", pres: "smaker", pret: "smakte", perf: "smakt", group: 2, es: "saber (a algo), probar" },
+  { inf: "å smitte", pres: "smitter", pret: "smittet", perf: "smittet", group: 1, es: "contagiar" },
+  { inf: "å snakke", pres: "snakker", pret: "snakket", perf: "snakket", group: 1, es: "hablar" },
+  { inf: "å sovne", pres: "sovner", pret: "sovnet", perf: "sovnet", group: 1, es: "quedarse dormido" },
+  { inf: "å sparke", pres: "sparker", pret: "sparket", perf: "sparket", group: 1, es: "patear" },
+  { inf: "å stoppe", pres: "stopper", pret: "stoppet", perf: "stoppet", group: 1, es: "parar(se)" },
+  { inf: "å strikke", pres: "strikker", pret: "strikket", perf: "strikket", group: 1, es: "tejer (con agujas)" },
+  { inf: "å sykle", pres: "sykler", pret: "syklet", perf: "syklet", group: 1, es: "ir en bici" },
+  { inf: "å takke", pres: "takker", pret: "takket", perf: "takket", group: 1, es: "agradecer" },
+  { inf: "å tegne", pres: "tegner", pret: "tegnet", perf: "tegnet", group: 1, es: "dibujar" },
+  { inf: "å trene", pres: "trener", pret: "trente", perf: "trent", group: 2, es: "entrenar" },
+  { inf: "å tørke", pres: "tørker", pret: "tørket", perf: "tørket", group: 1, es: "secar" },
+  { inf: "å vaske", pres: "vasker", pret: "vasket", perf: "vasket", group: 1, es: "lavar" },
+  { inf: "å vente", pres: "venter", pret: "ventet", perf: "ventet", group: 1, es: "esperar" },
+  { inf: "å vinke", pres: "vinker", pret: "vinket", perf: "vinket", group: 1, es: "saludar con la mano" },
+  { inf: "å våkne", pres: "våkner", pret: "våknet", perf: "våknet", group: 1, es: "despertarse" },
+  { inf: "å varme", pres: "varmer", pret: "varmet", perf: "varmet", group: 1, es: "calentar" },
+  { inf: "å vekke", pres: "vekker", pret: "vekket", perf: "vekket", group: 1, es: "despertar (a alguien)" },
+  { inf: "å ønske", pres: "ønsker", pret: "ønsket", perf: "ønsket", group: 1, es: "desear" },
+  { inf: "å åpne", pres: "åpner", pret: "åpnet", perf: "åpnet", group: 1, es: "abrir" },
+  { inf: "å pågripe", pres: "pågriper", pret: "pågrep", perf: "pågrepet", group: "irr", es: "arrestar, detener" },
+
+  // Group 2 -te (extras)
+  { inf: "å anbefale", pres: "anbefaler", pret: "anbefalte", perf: "anbefalt", group: 2, es: "recomendar" },
+  { inf: "å bake", pres: "baker", pret: "bakte", perf: "bakt", group: 2, es: "hornear" },
+  { inf: "å barbere seg", pres: "barberer seg", pret: "barberte seg", perf: "barbert seg", group: 2, es: "afeitarse" },
+  { inf: "å bestemme", pres: "bestemmer", pret: "bestemte", perf: "bestemt", group: 2, es: "decidir" },
+  { inf: "å bestille", pres: "bestiller", pret: "bestilte", perf: "bestilt", group: 2, es: "pedir, encargar" },
+  { inf: "å besøke", pres: "besøker", pret: "besøkte", perf: "besøkt", group: 2, es: "visitar" },
+  { inf: "å betale", pres: "betaler", pret: "betalte", perf: "betalt", group: 2, es: "pagar" },
+  { inf: "å blåse", pres: "blåser", pret: "blåste", perf: "blåst", group: 2, es: "soplar" },
+  { inf: "å bruke", pres: "bruker", pret: "brukte", perf: "brukt", group: 2, es: "usar" },
+  { inf: "å dele", pres: "deler", pret: "delte", perf: "delt", group: 2, es: "dividir, compartir" },
+  { inf: "å diskutere", pres: "diskuterer", pret: "diskuterte", perf: "diskutert", group: 2, es: "discutir, debatir" },
+  { inf: "å drepe", pres: "dreper", pret: "drepte", perf: "drept", group: 2, es: "matar" },
+  { inf: "å drømme", pres: "drømmer", pret: "drømte", perf: "drømt", group: 2, es: "soñar" },
+  { inf: "å fortelle", pres: "forteller", pret: "fortalte", perf: "fortalt", group: 2, es: "contar (una historia)", note: "Cambia la vocal: forteller → fortalte" },
+  { inf: "å forklare", pres: "forklarer", pret: "forklarte", perf: "forklart", group: 2, es: "explicar" },
+  { inf: "å fylle", pres: "fyller", pret: "fylte", perf: "fylt", group: 2, es: "llenar" },
+  { inf: "å føde", pres: "føder", pret: "fødte", perf: "født", group: 2, es: "parir, dar a luz" },
+  { inf: "å føle", pres: "føler", pret: "følte", perf: "følt", group: 2, es: "sentir" },
+  { inf: "å glemme", pres: "glemmer", pret: "glemte", perf: "glemt", group: 2, es: "olvidar" },
+  { inf: "å gratulere", pres: "gratulerer", pret: "gratulerte", perf: "gratulert", group: 2, es: "felicitar" },
+  { inf: "å hende", pres: "hender", pret: "hendte", perf: "hendt", group: 2, es: "ocurrir, suceder" },
+  { inf: "å høre", pres: "hører", pret: "hørte", perf: "hørt", group: 2, es: "oír" },
+  { inf: "å hvile", pres: "hviler", pret: "hvilte", perf: "hvilt", group: 2, es: "descansar" },
+  { inf: "å invitere", pres: "inviterer", pret: "inviterte", perf: "invitert", group: 2, es: "invitar" },
+  { inf: "å kjenne", pres: "kjenner", pret: "kjente", perf: "kjent", group: 2, es: "conocer (a alguien); sentir" },
+  { inf: "å klare", pres: "klarer", pret: "klarte", perf: "klart", group: 2, es: "poder, conseguir" },
+  { inf: "å klemme", pres: "klemmer", pret: "klemte", perf: "klemt", group: 2, es: "abrazar, apretar" },
+  { inf: "å klippe", pres: "klipper", pret: "klipte", perf: "klipt", group: 2, es: "cortar (con tijeras)" },
+  { inf: "å koke", pres: "koker", pret: "kokte", perf: "kokt", group: 2, es: "cocer, hervir" },
+  { inf: "å kontakte", pres: "kontakter", pret: "kontaktet", perf: "kontaktet", group: 1, es: "contactar" },
+  { inf: "å kose seg", pres: "koser seg", pret: "koste seg", perf: "kost seg", group: 2, es: "pasarlo bien, disfrutar" },
+  { inf: "å lese", pres: "leser", pret: "leste", perf: "lest", group: 2, es: "leer" },
+  { inf: "å lete", pres: "leter", pret: "lette", perf: "lett", group: 2, es: "buscar" },
+  { inf: "å levere", pres: "leverer", pret: "leverte", perf: "levert", group: 2, es: "entregar" },
+  { inf: "å like", pres: "liker", pret: "likte", perf: "likt", group: 2, es: "gustar" },
+  { inf: "å låne", pres: "låner", pret: "lånte", perf: "lånt", group: 2, es: "prestar, tomar prestado" },
+  { inf: "å låse", pres: "låser", pret: "låste", perf: "låst", group: 2, es: "cerrar con llave" },
+  { inf: "å løse", pres: "løser", pret: "løste", perf: "løst", group: 2, es: "resolver, soltar" },
+  { inf: "å mase", pres: "maser", pret: "maste", perf: "mast", group: 2, es: "molestar, dar la lata" },
+  { inf: "å mene", pres: "mener", pret: "mente", perf: "ment", group: 2, es: "opinar, querer decir" },
+  { inf: "å møte", pres: "møter", pret: "møtte", perf: "møtt", group: 2, es: "encontrarse con, conocer" },
+  { inf: "å måle", pres: "måler", pret: "målte", perf: "målt", group: 2, es: "medir" },
+  { inf: "å parkere", pres: "parkerer", pret: "parkerte", perf: "parkert", group: 2, es: "aparcar" },
+  { inf: "å peke", pres: "peker", pret: "pekte", perf: "pekt", group: 2, es: "señalar" },
+  { inf: "å presentere", pres: "presenterer", pret: "presenterte", perf: "presentert", group: 2, es: "presentar" },
+  { inf: "å reise seg", pres: "reiser seg", pret: "reiste seg", perf: "reist seg", group: 2, es: "levantarse, alzarse" },
+  { inf: "å reparere", pres: "reparerer", pret: "reparerte", perf: "reparert", group: 2, es: "reparar" },
+  { inf: "å repetere", pres: "repeterer", pret: "repeterte", perf: "repetert", group: 2, es: "repetir" },
+  { inf: "å ringe", pres: "ringer", pret: "ringte", perf: "ringt", group: 2, es: "llamar (por teléfono), sonar" },
+  { inf: "å røyke", pres: "røyker", pret: "røykte", perf: "røykt", group: 2, es: "fumar" },
+  { inf: "å sende", pres: "sender", pret: "sendte", perf: "sendt", group: 2, es: "enviar" },
+  { inf: "å servere", pres: "serverer", pret: "serverte", perf: "servert", group: 2, es: "servir" },
+  { inf: "å skille", pres: "skiller", pret: "skilte", perf: "skilt", group: 2, es: "separar(se), divorciar(se)" },
+  { inf: "å skinne", pres: "skinner", pret: "skinte", perf: "skint", group: 2, es: "brillar" },
+  { inf: "å skjønne", pres: "skjønner", pret: "skjønte", perf: "skjønt", group: 2, es: "entender, captar" },
+  { inf: "å smile", pres: "smiler", pret: "smilte", perf: "smilt", group: 2, es: "sonreír" },
+  { inf: "å spare", pres: "sparer", pret: "sparte", perf: "spart", group: 2, es: "ahorrar" },
+  { inf: "å steke", pres: "steker", pret: "stekte", perf: "stekt", group: 2, es: "freír, asar" },
+  { inf: "å stelle", pres: "steller", pret: "stelte", perf: "stelt", group: 2, es: "cuidar, atender" },
+  { inf: "å stemme", pres: "stemmer", pret: "stemte", perf: "stemt", group: 2, es: "votar; afinar; ser correcto" },
+  { inf: "å stille", pres: "stiller", pret: "stilte", perf: "stilt", group: 2, es: "poner, colocar" },
+  { inf: "å svare", pres: "svarer", pret: "svarte", perf: "svart", group: 2, es: "responder" },
+  { inf: "å søke", pres: "søker", pret: "søkte", perf: "søkt", group: 2, es: "buscar, solicitar" },
+  { inf: "å tape", pres: "taper", pret: "tapte", perf: "tapt", group: 2, es: "perder (un partido)" },
+  { inf: "å tenke", pres: "tenker", pret: "tenkte", perf: "tenkt", group: 2, es: "pensar" },
+  { inf: "å tenne", pres: "tenner", pret: "tente", perf: "tent", group: 2, es: "encender" },
+  { inf: "å tjene", pres: "tjener", pret: "tjente", perf: "tjent", group: 2, es: "ganar (dinero), servir" },
+  { inf: "å trenge", pres: "trenger", pret: "trengte", perf: "trengt", group: 2, es: "necesitar" },
+  { inf: "å undervise", pres: "underviser", pret: "underviste", perf: "undervist", group: 2, es: "enseñar (impartir clase)" },
+  { inf: "å undersøke", pres: "undersøker", pret: "undersøkte", perf: "undersøkt", group: 2, es: "examinar, investigar" },
+  { inf: "å unnskylde", pres: "unnskylder", pret: "unnskyldte", perf: "unnskyldt", group: 2, es: "disculpar(se)" },
+  { inf: "å utføre", pres: "utfører", pret: "utførte", perf: "utført", group: 2, es: "ejecutar, llevar a cabo" },
+  { inf: "å uttale", pres: "uttaler", pret: "uttalte", perf: "uttalt", group: 2, es: "pronunciar" },
+  { inf: "å vise", pres: "viser", pret: "viste", perf: "vist", group: 2, es: "mostrar" },
+  { inf: "å øke", pres: "øker", pret: "økte", perf: "økt", group: 2, es: "aumentar" },
+
+  // Group 3 -de (extras)
+  { inf: "å bygge", pres: "bygger", pret: "bygde", perf: "bygd", group: 3, es: "construir" },
+  { inf: "å greie", pres: "greier", pret: "greide", perf: "greid", group: 3, es: "arreglárselas, conseguir" },
+  { inf: "å klage", pres: "klager", pret: "klagde", perf: "klagd", group: 3, es: "quejarse, protestar" },
+  { inf: "å kreve", pres: "krever", pret: "krevde", perf: "krevd", group: 3, es: "exigir, requerir" },
+  { inf: "å oppleve", pres: "opplever", pret: "opplevde", perf: "opplevd", group: 3, es: "experimentar, vivir (algo)" },
+  { inf: "å veie", pres: "veier", pret: "veide", perf: "veid", group: 3, es: "pesar" },
+  { inf: "å øve", pres: "øver", pret: "øvde", perf: "øvd", group: 3, es: "practicar" },
+
+  // Group 4 -dde (extras)
+  { inf: "å blø", pres: "blør", pret: "blødde", perf: "blødd", group: 4, es: "sangrar" },
+  { inf: "å bry seg", pres: "bryr seg", pret: "brydde seg", perf: "brydd seg", group: 4, es: "preocuparse por, importar" },
+  { inf: "å gre", pres: "grer", pret: "gredde", perf: "gredd", group: 4, es: "peinar(se)" },
+  { inf: "å nå", pres: "når", pret: "nådde", perf: "nådd", group: 4, es: "alcanzar, llegar a" },
+  { inf: "å ro", pres: "ror", pret: "rodde", perf: "rodd", group: 4, es: "remar" },
+  { inf: "å skje", pres: "skjer", pret: "skjedde", perf: "skjedd", group: 4, es: "ocurrir, suceder" },
+  { inf: "å skru", pres: "skrur", pret: "skrudde", perf: "skrudd", group: 4, es: "atornillar; encender (interruptor)" },
+  { inf: "å snu", pres: "snur", pret: "snudde", perf: "snudd", group: 4, es: "girar, dar la vuelta" },
+  { inf: "å spå", pres: "spår", pret: "spådde", perf: "spådd", group: 4, es: "predecir" },
+  { inf: "å sy", pres: "syr", pret: "sydde", perf: "sydd", group: 4, es: "coser" },
+
+  // Irregular (extras - sterke verb)
+  { inf: "å be", pres: "ber", pret: "ba", perf: "bedt", group: "irr", es: "pedir, rogar, rezar", note: "Pretérito también acepta 'bad'" },
+  { inf: "å binde", pres: "binder", pret: "bandt", perf: "bundet", group: "irr", es: "atar, vendar" },
+  { inf: "å bite", pres: "biter", pret: "bet", perf: "bitt", group: "irr", es: "morder" },
+  { inf: "å bli", pres: "blir", pret: "ble", perf: "blitt", group: "irr", es: "ser, estar (pasivo); convertirse en; quedarse" },
+  { inf: "å brekke", pres: "brekker", pret: "brakk", perf: "brukket", group: "irr", es: "romper(se), quebrar(se)" },
+  { inf: "å brenne", pres: "brenner", pret: "brant", perf: "brent", group: "irr", es: "arder, quemar" },
+  { inf: "å bringe", pres: "bringer", pret: "brakte", perf: "brakt", group: "irr", es: "traer, llevar" },
+  { inf: "å bryte", pres: "bryter", pret: "brøt", perf: "brutt", group: "irr", es: "romper, quebrantar" },
+  { inf: "å burde", pres: "bør", pret: "burde", perf: "burdet", group: "irr", es: "deber (de) — modal" },
+  { inf: "å by", pres: "byr", pret: "bød", perf: "budt", group: "irr", es: "ofrecer, pujar" },
+  { inf: "å bære", pres: "bærer", pret: "bar", perf: "båret", group: "irr", es: "llevar, cargar" },
+  { inf: "å falle", pres: "faller", pret: "falt", perf: "falt", group: "irr", es: "caer" },
+  { inf: "å finne", pres: "finner", pret: "fant", perf: "funnet", group: "irr", es: "encontrar" },
+  { inf: "å fly", pres: "flyr", pret: "fløy", perf: "fløyet", group: "irr", es: "volar" },
+  { inf: "å fryse", pres: "fryser", pret: "frøs", perf: "frosset", group: "irr", es: "tener frío, helar" },
+  { inf: "å forsvinne", pres: "forsvinner", pret: "forsvant", perf: "forsvunnet", group: "irr", es: "desaparecer" },
+  { inf: "å fortsette", pres: "fortsetter", pret: "fortsatte", perf: "fortsatt", group: "irr", es: "continuar" },
+  { inf: "å forlate", pres: "forlater", pret: "forlot", perf: "forlatt", group: "irr", es: "abandonar, dejar" },
+  { inf: "å foretrekke", pres: "foretrekker", pret: "foretrakk", perf: "foretrukket", group: "irr", es: "preferir" },
+  { inf: "å foreslå", pres: "foreslår", pret: "foreslo", perf: "foreslått", group: "irr", es: "sugerir, proponer" },
+  { inf: "å få", pres: "får", pret: "fikk", perf: "fått", group: "irr", es: "recibir, obtener; poder" },
+  { inf: "å gjelde", pres: "gjelder", pret: "gjaldt", perf: "gjeldt", group: "irr", es: "aplicarse a, ser válido" },
+  { inf: "å gjenta", pres: "gjentar", pret: "gjentok", perf: "gjentatt", group: "irr", es: "repetir" },
+  { inf: "å gli", pres: "glir", pret: "gled", perf: "glidd", group: "irr", es: "deslizarse, resbalar" },
+  { inf: "å gripe", pres: "griper", pret: "grep", perf: "grepet", group: "irr", es: "agarrar, sujetar" },
+  { inf: "å gråte", pres: "gråter", pret: "gråt", perf: "grått", group: "irr", es: "llorar" },
+  { inf: "å henge", pres: "henger", pret: "hang", perf: "hengt", group: "irr", es: "estar colgado", note: "Cuando significa 'colgar (algo)' es regular: hengte/hengt" },
+  { inf: "å hete", pres: "heter", pret: "het", perf: "hett", group: "irr", es: "llamarse" },
+  { inf: "å hjelpe", pres: "hjelper", pret: "hjalp", perf: "hjulpet", group: "irr", es: "ayudar" },
+  { inf: "å holde", pres: "holder", pret: "holdt", perf: "holdt", group: "irr", es: "sujetar, mantener" },
+  { inf: "å kunne", pres: "kan", pret: "kunne", perf: "kunnet", group: "irr", es: "poder, saber — modal" },
+  { inf: "å la", pres: "lar", pret: "lot", perf: "latt", group: "irr", es: "dejar, permitir" },
+  { inf: "å le", pres: "ler", pret: "lo", perf: "ledd", group: "irr", es: "reír" },
+  { inf: "å legge", pres: "legger", pret: "la", perf: "lagt", group: "irr", es: "poner, colocar (tumbado)" },
+  { inf: "å ligge", pres: "ligger", pret: "lå", perf: "ligget", group: "irr", es: "estar tumbado, yacer" },
+  { inf: "å løpe", pres: "løper", pret: "løp", perf: "løpt", group: "irr", es: "correr" },
+  { inf: "å lyve", pres: "lyver", pret: "løy", perf: "løyet", group: "irr", es: "mentir" },
+  { inf: "å måtte", pres: "må", pret: "måtte", perf: "måttet", group: "irr", es: "deber, tener que — modal" },
+  { inf: "å overta", pres: "overtar", pret: "overtok", perf: "overtatt", group: "irr", es: "tomar el relevo, ocupar" },
+  { inf: "å rekke", pres: "rekker", pret: "rakk", perf: "rukket", group: "irr", es: "alcanzar, llegar a tiempo" },
+  { inf: "å ri", pres: "rir", pret: "red", perf: "ridd", group: "irr", es: "montar (a caballo)" },
+  { inf: "å rive", pres: "river", pret: "rev", perf: "revet", group: "irr", es: "rasgar, derribar" },
+  { inf: "å se", pres: "ser", pret: "så", perf: "sett", group: "irr", es: "ver, mirar" },
+  { inf: "å sette", pres: "setter", pret: "satte", perf: "satt", group: "irr", es: "poner, sentar" },
+  { inf: "å si", pres: "sier", pret: "sa", perf: "sagt", group: "irr", es: "decir" },
+  { inf: "å sitte", pres: "sitter", pret: "satt", perf: "sittet", group: "irr", es: "estar sentado" },
+  { inf: "å skjære", pres: "skjærer", pret: "skar", perf: "skåret", group: "irr", es: "cortar" },
+  { inf: "å skrive", pres: "skriver", pret: "skrev", perf: "skrevet", group: "irr", es: "escribir" },
+  { inf: "å skulle", pres: "skal", pret: "skulle", perf: "skullet", group: "irr", es: "ir a, deber — modal de futuro" },
+  { inf: "å skyte", pres: "skyter", pret: "skjøt", perf: "skutt", group: "irr", es: "disparar" },
+  { inf: "å slippe", pres: "slipper", pret: "slapp", perf: "sluppet", group: "irr", es: "soltar; librarse de" },
+  { inf: "å slå", pres: "slår", pret: "slo", perf: "slått", group: "irr", es: "golpear, pegar" },
+  { inf: "å spørre", pres: "spør", pret: "spurte", perf: "spurt", group: "irr", es: "preguntar" },
+  { inf: "å stige", pres: "stiger", pret: "steg", perf: "steget", group: "irr", es: "subir, ascender" },
+  { inf: "å stikke", pres: "stikker", pret: "stakk", perf: "stukket", group: "irr", es: "pinchar; ir/escapar rápido" },
+  { inf: "å stjele", pres: "stjeler", pret: "stjal", perf: "stjålet", group: "irr", es: "robar" },
+  { inf: "å strekke", pres: "strekker", pret: "strakk", perf: "strukket", group: "irr", es: "estirar" },
+  { inf: "å stryke", pres: "stryker", pret: "strøk", perf: "strøket", group: "irr", es: "planchar; suspender (examen)" },
+  { inf: "å stå", pres: "står", pret: "sto", perf: "stått", group: "irr", es: "estar de pie", note: "También 'stod' (más formal)" },
+  { inf: "å synes", pres: "synes", pret: "syntes", perf: "syntes", group: "irr", es: "opinar, parecer (s-verbo)" },
+  { inf: "å synge", pres: "synger", pret: "sang", perf: "sunget", group: "irr", es: "cantar" },
+  { inf: "å synke", pres: "synker", pret: "sank", perf: "sunket", group: "irr", es: "hundirse" },
+  { inf: "å ta", pres: "tar", pret: "tok", perf: "tatt", group: "irr", es: "tomar, coger" },
+  { inf: "å tilby", pres: "tilbyr", pret: "tilbød", perf: "tilbudt", group: "irr", es: "ofrecer" },
+  { inf: "å treffe", pres: "treffer", pret: "traff", perf: "truffet", group: "irr", es: "encontrarse con; acertar" },
+  { inf: "å trekke", pres: "trekker", pret: "trakk", perf: "trukket", group: "irr", es: "tirar de, sacar" },
+  { inf: "å trives", pres: "trives", pret: "trivdes", perf: "trivdes", group: "irr", es: "estar a gusto, sentirse bien (s-verbo)" },
+  { inf: "å tvinge", pres: "tvinger", pret: "tvang", perf: "tvunget", group: "irr", es: "forzar, obligar" },
+  { inf: "å velge", pres: "velger", pret: "valgte", perf: "valgt", group: "irr", es: "elegir" },
+  { inf: "å vinne", pres: "vinner", pret: "vant", perf: "vunnet", group: "irr", es: "ganar" },
+  { inf: "å ville", pres: "vil", pret: "ville", perf: "villet", group: "irr", es: "querer; ir a — modal" },
+  { inf: "å vri", pres: "vrir", pret: "vred", perf: "vridd", group: "irr", es: "torcer, retorcer" },
+  { inf: "å vokse", pres: "vokser", pret: "vokste", perf: "vokst", group: 2, es: "crecer" }
+];
+
+/* Map for unique verbs (use infinitive as key). De-dup with Notater priority. */
+(function dedupVerbs() {
+  const seen = new Map();
+  for (const v of VERBS) {
+    const key = v.inf;
+    if (!seen.has(key) || (v.noter && !seen.get(key).noter)) {
+      seen.set(key, v);
+    }
+  }
+  VERBS.length = 0;
+  for (const v of seen.values()) VERBS.push(v);
+})();
+
+/* ============================================================
+   SENTENCES FOR MODULE 3
+   Each sentence has blanks. Each blank has:
+   - inf: infinitive of the verb
+   - tense: 'pres' | 'pret' | 'inf' (after modal)
+   ============================================================ */
+const SENTENCES = [
+  { no: "Jeg ___ i Bilbao.", es: "Vivo en Bilbao.", blanks: [{ inf: "å bo", tense: "pres" }] },
+  { no: "I går ___ jeg pizza på en restaurant.", es: "Ayer comí pizza en un restaurante.", blanks: [{ inf: "å spise", tense: "pret" }] },
+  { no: "Jeg vil ___ til Norge i sommer.", es: "Quiero viajar a Noruega este verano.", blanks: [{ inf: "å reise", tense: "inf" }] },
+  { no: "Hun ___ norsk hver dag.", es: "Ella estudia noruego todos los días.", blanks: [{ inf: "å studere", tense: "pres" }] },
+  { no: "Vi ___ kaffe på kafé i går.", es: "Bebimos café en la cafetería ayer.", blanks: [{ inf: "å drikke", tense: "pret" }] },
+  { no: "Han kan ___ veldig godt.", es: "Él sabe nadar muy bien.", blanks: [{ inf: "å svømme", tense: "inf" }] },
+  { no: "De ___ hjem klokka åtte.", es: "Volvieron a casa a las ocho.", blanks: [{ inf: "å komme", tense: "pret" }] },
+  { no: "Jeg ___ alltid hjemme i helgene.", es: "Siempre estoy en casa los fines de semana.", blanks: [{ inf: "å være", tense: "pres" }] },
+  { no: "Vi må ___ tidlig i morgen.", es: "Tenemos que levantarnos temprano mañana.", blanks: [{ inf: "å stå opp", tense: "inf" }] },
+  { no: "Forrige uke ___ jeg en ny bok.", es: "La semana pasada compré un libro nuevo.", blanks: [{ inf: "å kjøpe", tense: "pret" }] },
+  { no: "Hva ___ du nå?", es: "¿Qué haces ahora?", blanks: [{ inf: "å gjøre", tense: "pres" }] },
+  { no: "I går ___ jeg veldig sliten.", es: "Ayer estaba muy cansado.", blanks: [{ inf: "å være", tense: "pret" }] },
+  { no: "Jeg ___ deg i morgen.", es: "Te llamo mañana.", blanks: [{ inf: "å ringe", tense: "pres" }] },
+  { no: "Barnet ___ med leker hele dagen.", es: "El niño juega con juguetes todo el día.", blanks: [{ inf: "å leke", tense: "pres" }] },
+  { no: "Vi skal ___ middag klokka seks.", es: "Vamos a cenar a las seis.", blanks: [{ inf: "å spise", tense: "inf" }] },
+  { no: "Jeg ___ hjem fra jobb klokka fem.", es: "Voy a casa del trabajo a las cinco.", blanks: [{ inf: "å gå", tense: "pres" }] },
+  { no: "I fjor ___ vi i Spania.", es: "El año pasado vivimos en España.", blanks: [{ inf: "å bo", tense: "pret" }] },
+  { no: "Du må ___ leksene dine!", es: "¡Tienes que hacer tus deberes!", blanks: [{ inf: "å gjøre", tense: "inf" }] },
+  { no: "Hun ___ to barn.", es: "Tiene dos hijos.", blanks: [{ inf: "å ha", tense: "pres" }] },
+  { no: "Da jeg var liten, ___ jeg mye sjokolade.", es: "Cuando era pequeño, comía mucho chocolate.", blanks: [{ inf: "å spise", tense: "pret" }] },
+  { no: "I dag ___ det mye.", es: "Hoy nieva mucho.", blanks: [{ inf: "å snø", tense: "pres" }] },
+  { no: "Jeg ___ ham fra arbeidet.", es: "Lo conozco del trabajo.", blanks: [{ inf: "å kjenne", tense: "pres" }] },
+  { no: "Vi ___ at det var sant.", es: "Creímos que era verdad.", blanks: [{ inf: "å tro", tense: "pret" }] },
+  { no: "Han skal ___ et nytt hus.", es: "Va a construir una casa nueva.", blanks: [{ inf: "å bygge", tense: "inf" }] },
+  { no: "De ___ på fest hele natten.", es: "Estuvieron de fiesta toda la noche.", blanks: [{ inf: "å være", tense: "pret" }] },
+  { no: "Jeg ___ ikke hva han mener.", es: "No entiendo qué quiere decir.", blanks: [{ inf: "å forstå", tense: "pres" }] },
+  { no: "Forrige helg ___ vi til fjellet.", es: "El finde pasado fuimos a la montaña.", blanks: [{ inf: "å dra", tense: "pret" }] },
+  { no: "Kan du ___ meg klokka?", es: "¿Me puedes decir la hora?", blanks: [{ inf: "å si", tense: "inf" }] },
+  { no: "Hun ___ et brev til sin mor i går.", es: "Le escribió una carta a su madre ayer.", blanks: [{ inf: "å skrive", tense: "pret" }] },
+  { no: "Jeg ___ alltid godt om natten.", es: "Siempre duermo bien por la noche.", blanks: [{ inf: "å sove", tense: "pres" }] },
+  { no: "I morges ___ jeg klokka syv.", es: "Esta mañana me desperté a las siete.", blanks: [{ inf: "å våkne", tense: "pret" }] },
+  { no: "Vi pleier å ___ kaffe etter middag.", es: "Solemos beber café después de cenar.", blanks: [{ inf: "å drikke", tense: "inf" }] },
+  { no: "Han ___ en gammel bil.", es: "Él tiene un coche viejo.", blanks: [{ inf: "å ha", tense: "pres" }] },
+  { no: "Vi ___ hverandre på kafé i fjor.", es: "Nos encontramos en una cafetería el año pasado.", blanks: [{ inf: "å møte", tense: "pret" }] },
+  { no: "Jeg vil ___ deg i morgen.", es: "Quiero verte mañana.", blanks: [{ inf: "å se", tense: "inf" }] },
+  { no: "Læreren ___ oss norsk grammatikk.", es: "El profesor nos enseña gramática noruega.", blanks: [{ inf: "å lære", tense: "pres" }] },
+  { no: "I går ___ jeg en interessant film.", es: "Ayer vi una película interesante.", blanks: [{ inf: "å se", tense: "pret" }] },
+  { no: "Skal vi ___ en tur i parken?", es: "¿Vamos a dar una vuelta por el parque?", blanks: [{ inf: "å gå", tense: "inf" }] },
+  { no: "Hun ___ alltid sannheten.", es: "Ella siempre dice la verdad.", blanks: [{ inf: "å si", tense: "pres" }] },
+  { no: "Vi ___ tidlig fordi vi var trøtte.", es: "Nos acostamos temprano porque estábamos cansados.", blanks: [{ inf: "å legge seg", tense: "pret" }] },
+  { no: "Jeg må ___ bilen min.", es: "Tengo que lavar mi coche.", blanks: [{ inf: "å vaske", tense: "inf" }] },
+  { no: "Det ___ veldig kaldt i går.", es: "Hizo mucho frío ayer.", blanks: [{ inf: "å være", tense: "pret" }] },
+  { no: "Hver morgen ___ jeg en kopp te.", es: "Cada mañana bebo una taza de té.", blanks: [{ inf: "å drikke", tense: "pres" }] },
+  { no: "Hun kan ikke ___ til festen.", es: "Ella no puede venir a la fiesta.", blanks: [{ inf: "å komme", tense: "inf" }] },
+  { no: "I sommer ___ vi til Italia.", es: "Este verano viajamos a Italia.", blanks: [{ inf: "å reise", tense: "pres" }] },
+  { no: "For tre dager siden ___ jeg en epost.", es: "Hace tres días envié un correo.", blanks: [{ inf: "å sende", tense: "pret" }] },
+  { no: "Han ___ alltid før han spiser.", es: "Él siempre se lava las manos antes de comer.", blanks: [{ inf: "å vaske", tense: "pres" }] },
+  { no: "Vi ___ fram til ferien.", es: "Nos hace ilusión las vacaciones.", blanks: [{ inf: "å glede seg", tense: "pres" }] },
+  { no: "Jeg ___ i Spania da jeg var liten.", es: "Vivía en España cuando era pequeño.", blanks: [{ inf: "å bo", tense: "pret" }] },
+  { no: "Vil du ___ med meg?", es: "¿Quieres bailar conmigo?", blanks: [{ inf: "å danse", tense: "inf" }] },
+  { no: "Han ___ meg en bok i fjor.", es: "Me regaló un libro el año pasado.", blanks: [{ inf: "å gi", tense: "pret" }] },
+  { no: "I morgen ___ jeg på kontoret klokka åtte.", es: "Mañana estoy en la oficina a las ocho.", blanks: [{ inf: "å være", tense: "pres" }] },
+  { no: "Hun ___ alltid mye.", es: "Ella siempre habla mucho.", blanks: [{ inf: "å snakke", tense: "pres" }] },
+  { no: "Vi ___ ferdig med arbeidet sent.", es: "Terminamos el trabajo tarde.", blanks: [{ inf: "å bli", tense: "pret" }] },
+  { no: "Jeg liker å ___ bøker om historie.", es: "Me gusta leer libros sobre historia.", blanks: [{ inf: "å lese", tense: "inf" }] },
+  // Two-blank sentences
+  { no: "I går ___ jeg på kafé og ___ kaffe.", es: "Ayer fui a la cafetería y bebí café.", blanks: [{ inf: "å gå", tense: "pret" }, { inf: "å drikke", tense: "pret" }] },
+  { no: "Hun ___ klokka seks og ___ frokost.", es: "Se levanta a las seis y desayuna.", blanks: [{ inf: "å stå opp", tense: "pres" }, { inf: "å spise", tense: "pres" }] },
+  { no: "Jeg ___ til Norge fordi jeg vil ___ norsk.", es: "Me mudo a Noruega porque quiero aprender noruego.", blanks: [{ inf: "å flytte", tense: "pres" }, { inf: "å lære", tense: "inf" }] }
+];
+
+/* ============================================================
+   STATE / STORAGE
+   ============================================================ */
+
+const STORAGE_KEY = 'norske_verb_progress_v1';
+
+// Level unlock passwords (level 2..10)
+const LEVEL_PASSWORDS = {
+  2:  'nordlys',
+  3:  'fjordvei',
+  4:  'soloppgang',
+  5:  'bjorkeskog',
+  6:  'vintergata',
+  7:  'isbjorn',
+  8:  'midnattssol',
+  9:  'grantreet',
+  10: 'trollstigen'
+};
+
+let state = {
+  settings: {
+    askA: true   // require å in infinitive
+  },
+  m1: {
+    levelSize: 3,
+    correctStreak: {},
+    sessionStats: { correct: 0, total: 0 },
+    currentVerb: null,
+    awaitingNext: false,
+    levelComplete: false,
+    unlockedLevel: 1   // highest level unlocked by password
+  },
+  m2: {
+    sessionStats: { correct: 0, total: 0 },
+    currentVerb: null,
+    awaitingNext: false
+  },
+  m3: {
+    currentSentence: null,
+    sessionStats: { correct: 0, total: 0 },
+    awaitingNext: false,
+    submitted: false
+  },
+  m4: {
+    sortBy: 'group',
+    search: ''
+  }
+};
+
+function saveSettings() {
+  const el = document.getElementById('setting-ask-a');
+  if (el) state.settings.askA = el.checked;
+  saveState();
+}
+
+function saveState() {
+  try {
+    const persist = {
+      m1Level: state.m1.levelSize,
+      m1Stats: state.m1.sessionStats,
+      m1UnlockedLevel: state.m1.unlockedLevel,
+      settingsAskA: state.settings.askA
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(persist));
+  } catch (e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const obj = JSON.parse(raw);
+      if (obj.m1Level) state.m1.levelSize = obj.m1Level;
+      if (obj.m1Stats) state.m1.sessionStats = obj.m1Stats;
+      if (obj.m1UnlockedLevel) state.m1.unlockedLevel = obj.m1UnlockedLevel;
+      if (typeof obj.settingsAskA === 'boolean') state.settings.askA = obj.settingsAskA;
+    }
+  } catch (e) {}
+  // Sync settings toggle
+  const el = document.getElementById('setting-ask-a');
+  if (el) el.checked = state.settings.askA;
+}
+
+function resetProgress() {
+  if (!confirm("¿Seguro que quieres reiniciar todo el progreso? Esto borrará tu nivel guardado.")) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  state.m1.levelSize = 3;
+  state.m1.correctStreak = {};
+  state.m1.sessionStats = { correct: 0, total: 0 };
+  state.m1.currentVerb = null;
+  state.m1.awaitingNext = false;
+  state.m1.levelComplete = false;
+  state.m1.unlockedLevel = 1;
+  state.m2.sessionStats = { correct: 0, total: 0 };
+  state.m2.currentVerb = null;
+  state.m2.awaitingNext = false;
+  state.m3.currentSentence = null;
+  state.m3.sessionStats = { correct: 0, total: 0 };
+  renderAll();
+}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+function normalize(s) {
+  if (!s) return '';
+  return s.trim().toLowerCase()
+    .replace(/æ/g, 'æ').replace(/ø/g, 'ø').replace(/å/g, 'å')
+    // accept ascii substitutions
+    .replace(/\bae\b/g, 'æ')
+    .replace(/oe(?![a-zæøå])/g, 'ø')
+    .replace(/aa(?![a-zæøå])/g, 'å');
+}
+
+function compareForms(input, expected, alternates) {
+  const a = normalize(input);
+  const candidates = [expected, ...(alternates || [])].map(normalize);
+  return candidates.includes(a);
+}
+
+// Returns the expected infinitive string based on the å setting
+function getInfExpected(verbInf) {
+  if (state.settings.askA) return verbInf; // full "å bo"
+  return verbInf.replace(/^å /, '');        // just "bo"
+}
+
+function getAlternates(verbForm) {
+  // Some verbs have alternate accepted forms
+  const alts = {
+    'ba': ['bad'],
+    'bad': ['ba'],
+    'ga': ['gav'],
+    'gav': ['ga'],
+    'sto': ['stod'],
+    'stod': ['sto'],
+    'forsto': ['forstod'],
+    'forstod': ['forsto'],
+    'tilbød': ['tilbod'],
+    'dro': ['drog'],
+    'drog': ['dro'],
+    'beit': ['bet'],
+    'bet': ['beit']
+  };
+  return alts[verbForm] || [];
+}
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function groupTagHTML(g) {
+  const labels = { 1: 'Grupo 1 / -et', 2: 'Grupo 2 / -te', 3: 'Grupo 3 / -de', 4: 'Grupo 4 / -dde', 'irr': 'Irregular' };
+  const cls = (g === 'irr') ? 'irr' : 'g' + g;
+  return `<span class="group-tag ${cls}">${labels[g] || g}</span>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+/* ============================================================
+   MODULE 1 - PROGRESSIVE LEARNING
+   ============================================================ */
+
+function getCurrentLevelVerbs() {
+  const groups = [1, 2, 3, 4, 'irr'];
+  const noterVerbs = VERBS.filter(v => v.noter);
+  const currentLevel = state.m1.levelSize;
+
+  // First, build levels from Notater verbs (group-balanced, 3-by-3)
+  let activeVerbs = [];
+  for (const g of groups) {
+    const inGroup = noterVerbs
+      .filter(v => v.group === g)
+      .sort((a, b) => a.noterOrder - b.noterOrder)
+      .slice(0, currentLevel);
+    activeVerbs = activeVerbs.concat(inGroup);
+  }
+
+  // After Notater list is exhausted (level >= max needed), include extra verbs
+  const maxNoterPerGroup = Math.max(...groups.map(g =>
+    noterVerbs.filter(v => v.group === g).length
+  ));
+
+  if (currentLevel > maxNoterPerGroup) {
+    // Add extra (non-noter) verbs progressively
+    const extraPerGroup = currentLevel - maxNoterPerGroup;
+    for (const g of groups) {
+      const extra = VERBS
+        .filter(v => v.group === g && !v.noter)
+        .slice(0, extraPerGroup * 3); // 3 per "extra level step"
+      activeVerbs = activeVerbs.concat(extra);
+    }
+  }
+
+  return activeVerbs;
+}
+
+// Returns required correct count for a verb: 2 if new this level, 1 if from a prior level
+function requiredForVerb(verbInf) {
+  const prevLevelVerbs = getLevelVerbs(state.m1.levelSize - 1);
+  const wasInPrevLevel = prevLevelVerbs.some(v => v.inf === verbInf);
+  return wasInPrevLevel ? 1 : 2;
+}
+
+// Get verbs for a specific levelSize (used for prev-level check)
+function getLevelVerbs(levelSize) {
+  if (levelSize < 1) return [];
+  const groups = [1, 2, 3, 4, 'irr'];
+  const noterVerbs = VERBS.filter(v => v.noter);
+  let activeVerbs = [];
+  for (const g of groups) {
+    const inGroup = noterVerbs
+      .filter(v => v.group === g)
+      .sort((a, b) => a.noterOrder - b.noterOrder)
+      .slice(0, levelSize);
+    activeVerbs = activeVerbs.concat(inGroup);
+  }
+  const maxNoterPerGroup = Math.max(...groups.map(g => noterVerbs.filter(v => v.group === g).length));
+  if (levelSize > maxNoterPerGroup) {
+    const extraPerGroup = levelSize - maxNoterPerGroup;
+    for (const g of groups) {
+      const extra = VERBS.filter(v => v.group === g && !v.noter).slice(0, extraPerGroup * 3);
+      activeVerbs = activeVerbs.concat(extra);
+    }
+  }
+  return activeVerbs;
+}
+
+function isLevelMastered() {
+  const verbs = getCurrentLevelVerbs();
+  if (verbs.length === 0) return false;
+  return verbs.every(v => (state.m1.correctStreak[v.inf] || 0) >= requiredForVerb(v.inf));
+}
+
+function pickVerbM1() {
+  const verbs = getCurrentLevelVerbs();
+  if (verbs.length === 0) return null;
+  // Prioritize verbs with lowest correctStreak count
+  const minStreak = Math.min(...verbs.map(v => state.m1.correctStreak[v.inf] || 0));
+  const candidates = verbs.filter(v => (state.m1.correctStreak[v.inf] || 0) === minStreak);
+  // Avoid repeating the same one if possible
+  if (state.m1.currentVerb && candidates.length > 1) {
+    const filtered = candidates.filter(v => v.inf !== state.m1.currentVerb.inf);
+    return pickRandom(filtered);
+  }
+  return pickRandom(candidates);
+}
+
+function renderM1() {
+  const root = document.getElementById('m1-content');
+  const verbs = getCurrentLevelVerbs();
+  const noterVerbs = VERBS.filter(v => v.noter);
+  const maxNoterPerGroup = Math.max(...[1,2,3,4,'irr'].map(g =>
+    noterVerbs.filter(v => v.group === g).length
+  ));
+
+  // Check if level mastered
+  if (isLevelMastered() && !state.m1.levelComplete) {
+    state.m1.levelComplete = true;
+  }
+
+  let html = '';
+
+  // Level banner
+  const totalActive = verbs.length;
+  const isPostNoter = state.m1.levelSize > maxNoterPerGroup;
+  const levelLabel = isPostNoter
+    ? `Nivel <b>${state.m1.levelSize}</b> · Curso libre (más allá del A1)`
+    : `Nivel <b>${state.m1.levelSize}</b> · ${state.m1.levelSize * 5} verbos del curso A1`;
+
+  html += `<div class="level-banner">
+    <div class="level-info">
+      <div class="label">Aprendizaje progresivo</div>
+      <div class="title">${levelLabel}</div>
+      <div class="level-list">${totalActive} verbos activos · sube de nivel cuando todos estén dominados</div>
+    </div>
+    <div class="button-row">
+      <button class="btn ghost" onclick="renderM1Stats()">Ver lista del nivel</button>
+      <button class="btn ghost" onclick="showUnlockDialog()" title="Desbloquear nivel con contraseña">🔓 Desbloquear nivel</button>
+    </div>
+  </div>`;
+
+  // Stats bar
+  const correctPct = state.m1.sessionStats.total > 0
+    ? Math.round(100 * state.m1.sessionStats.correct / state.m1.sessionStats.total) : 0;
+
+  const masteredCount = verbs.filter(v => (state.m1.correctStreak[v.inf] || 0) >= requiredForVerb(v.inf)).length;
+
+  html += `<div class="stats-bar">
+    <div class="stat">
+      <div class="stat-label">Aciertos sesión</div>
+      <div class="stat-value aurora">${state.m1.sessionStats.correct}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Intentos</div>
+      <div class="stat-value">${state.m1.sessionStats.total}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">% acierto</div>
+      <div class="stat-value">${correctPct}%</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Dominados</div>
+      <div class="stat-value">${masteredCount} / ${totalActive}</div>
+    </div>
+  </div>`;
+
+  // Progress bar
+  const progressPct = totalActive > 0 ? (masteredCount / totalActive) * 100 : 0;
+  html += `<div class="progress-track" style="margin-bottom:24px;"><div class="progress-fill" style="width:${progressPct}%"></div></div>`;
+
+  // If level complete, show celebration
+  if (state.m1.levelComplete) {
+    html += `<div class="celebration">
+      <h2>¡Has dominado este nivel!</h2>
+      <p>Has acertado todos los verbos del nivel ${state.m1.levelSize}.<br>¿Quieres añadir 3 verbos más por grupo y subir al siguiente nivel?</p>
+      <div class="button-row">
+        <button class="btn" onclick="advanceLevel()">Avanzar al nivel ${state.m1.levelSize + 1}</button>
+        <button class="btn ghost" onclick="continuePracticing()">Seguir practicando este nivel</button>
+      </div>
+    </div>`;
+    root.innerHTML = html;
+    return;
+  }
+
+  // The actual quiz card
+  if (!state.m1.currentVerb) {
+    state.m1.currentVerb = pickVerbM1();
+  }
+
+  if (!state.m1.currentVerb) {
+    html += `<div class="card large"><p>No hay verbos para mostrar. Reinicia el progreso si crees que es un error.</p></div>`;
+    root.innerHTML = html;
+    return;
+  }
+
+  html += renderQuizCard('m1', state.m1.currentVerb, state.m1.awaitingNext);
+
+  root.innerHTML = html;
+  attachQuizHandlers('m1');
+}
+
+function renderM1Stats() {
+  const verbs = getCurrentLevelVerbs();
+  let listHtml = '<div class="card"><div class="section-title">Lista del nivel actual</div>';
+  listHtml += `<p style="font-family:'Fraunces',serif;font-style:italic;color:var(--ink-muted);margin-bottom:16px;">${verbs.length} verbos activos. Los verbos nuevos necesitan 2 aciertos; los del nivel anterior, 1.</p>`;
+  listHtml += '<div class="dict-table">';
+  listHtml += '<div class="dict-row header"><div></div><div>Infinitivo</div><div>Presente</div><div>Pretérito</div><div>Estado</div><div>Español</div></div>';
+  for (const v of verbs) {
+    const req = requiredForVerb(v.inf);
+    const streak = state.m1.correctStreak[v.inf] || 0;
+    const status = streak >= req ? '✓ dominado' : `· ${streak} / ${req}`;
+    const cls = (v.group === 'irr') ? 'irr' : 'g' + v.group;
+    listHtml += `<div class="dict-row">
+      <div class="grp ${cls}">${v.group === 'irr' ? 'IR' : v.group}</div>
+      <div>${escapeHtml(v.inf)}</div>
+      <div>${escapeHtml(v.pres)}</div>
+      <div>${escapeHtml(v.pret)}</div>
+      <div style="color:${streak>=2?'var(--aurora)':'var(--ink-muted)'};font-family:'JetBrains Mono',monospace;font-size:12px;">${status}</div>
+      <div class="es">${escapeHtml(v.es)}</div>
+    </div>`;
+  }
+  listHtml += '</div>';
+  listHtml += `<div style="margin-top:18px;"><button class="btn ghost" onclick="renderM1()">← Volver a practicar</button></div>`;
+  listHtml += '</div>';
+  document.getElementById('m1-content').innerHTML = listHtml;
+}
+
+function advanceLevel() {
+  state.m1.levelSize += 1;
+  state.m1.correctStreak = {};
+  state.m1.levelComplete = false;
+  state.m1.currentVerb = null;
+  state.m1.awaitingNext = false;
+  saveState();
+  renderM1();
+  updateMeta();
+}
+
+function continuePracticing() {
+  state.m1.levelComplete = false;
+  state.m1.currentVerb = null;
+  state.m1.awaitingNext = false;
+  renderM1();
+}
+
+/* ============================================================
+   MODULE 2 - RANDOM (ALL VERBS)
+   ============================================================ */
+
+function pickVerbM2() {
+  let candidates = VERBS;
+  if (state.m2.currentVerb && VERBS.length > 1) {
+    candidates = VERBS.filter(v => v.inf !== state.m2.currentVerb.inf);
+  }
+  return pickRandom(candidates);
+}
+
+function renderM2() {
+  const root = document.getElementById('m2-content');
+  let html = '';
+
+  const correctPct = state.m2.sessionStats.total > 0
+    ? Math.round(100 * state.m2.sessionStats.correct / state.m2.sessionStats.total) : 0;
+
+  html += `<div class="info-block">
+    <b>Práctica aleatoria</b> — Aquí aparecen <b>todos los ${VERBS.length} verbos</b> en orden aleatorio.
+    Sin niveles, sin filtros: solo conjuga.
+  </div>`;
+
+  html += `<div class="stats-bar">
+    <div class="stat"><div class="stat-label">Aciertos</div><div class="stat-value aurora">${state.m2.sessionStats.correct}</div></div>
+    <div class="stat"><div class="stat-label">Fallos</div><div class="stat-value coral">${state.m2.sessionStats.total - state.m2.sessionStats.correct}</div></div>
+    <div class="stat"><div class="stat-label">Intentos</div><div class="stat-value">${state.m2.sessionStats.total}</div></div>
+    <div class="stat"><div class="stat-label">% acierto</div><div class="stat-value">${correctPct}%</div></div>
+  </div>`;
+
+  if (!state.m2.currentVerb) {
+    state.m2.currentVerb = pickVerbM2();
+  }
+
+  html += renderQuizCard('m2', state.m2.currentVerb, state.m2.awaitingNext);
+
+  root.innerHTML = html;
+  attachQuizHandlers('m2');
+}
+
+/* ============================================================
+   QUIZ CARD (shared between M1 & M2)
+   ============================================================ */
+
+function renderQuizCard(mod, verb, awaitingNext) {
+  const res = state[mod].fieldResults;
+
+  function fieldHTML(id, labelNO, labelES, placeholder, resKey) {
+    if (awaitingNext && res) {
+      const r = res[resKey];
+      const cls = r.ok ? 'ok' : 'bad';
+      const displayVal = r.ok ? escapeHtml(r.got) : escapeHtml(r.correct);
+      const style = r.ok ? 'color:var(--aurora);font-weight:600;' : 'color:var(--coral);font-weight:700;';
+      return `<div class="field">
+        <label>${labelNO} <span class="es">— ${labelES}</span></label>
+        <input type="text" id="${mod}-${resKey}" class="${cls}" value="${displayVal}" style="${style}" readonly />
+      </div>`;
+    }
+    return `<div class="field">
+      <label>${labelNO} <span class="es">— ${labelES}</span></label>
+      <input type="text" id="${mod}-${resKey}" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    </div>`;
+  }
+
+  return `<div class="card large">
+    <span class="kicker">CONJUGA EN NORUEGO</span>
+    <div class="section-title">Escribe las tres formas de este verbo</div>
+    <div class="infinitive-display" style="font-size:clamp(32px,5vw,52px);margin-bottom:6px;">${escapeHtml(verb.es)}</div>
+
+    <div class="input-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      ${fieldHTML(mod, 'Infinitiv', state.settings.askA ? 'å …' : 'sin å', 'infinitivo', 'inf')}
+      ${fieldHTML(mod, 'Presens', 'presente', 'presente', 'pres')}
+      ${fieldHTML(mod, 'Preteritum', 'pretérito', 'pretérito', 'pret')}
+    </div>
+
+    <div class="button-row">
+      ${awaitingNext
+        ? `<button class="btn aurora" id="${mod}-next">Siguiente verbo →</button>
+           <button class="btn ghost" id="${mod}-skip">Saltar este</button>`
+        : `<button class="btn" id="${mod}-check">Comprobar</button>
+           <button class="btn ghost" id="${mod}-reveal">Mostrar respuesta</button>`}
+    </div>
+
+    <div class="feedback" id="${mod}-feedback"></div>
+  </div>`;
+}
+
+function attachQuizHandlers(mod) {
+  const inpInf  = document.getElementById(mod + '-inf');
+  const inpPres = document.getElementById(mod + '-pres');
+  const inpPret = document.getElementById(mod + '-pret');
+  if (inpInf) {
+    inpInf.focus();
+    inpInf.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (inpPres) inpPres.focus(); } });
+  }
+  if (inpPres) {
+    inpPres.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (inpPret) inpPret.focus(); } });
+  }
+  if (inpPret) {
+    inpPret.addEventListener('keydown', e => { if (e.key === 'Enter') {
+      e.preventDefault();
+      const checkBtn = document.getElementById(mod + '-check');
+      const nextBtn  = document.getElementById(mod + '-next');
+      if (checkBtn) { enterCooldown = true; setTimeout(() => { enterCooldown = false; }, 300); checkBtn.click(); }
+      else if (nextBtn) nextBtn.click();
+    }});
+  }
+  const checkBtn = document.getElementById(mod + '-check');
+  if (checkBtn) checkBtn.onclick = () => checkAnswer(mod);
+  const nextBtn = document.getElementById(mod + '-next');
+  if (nextBtn) nextBtn.onclick = () => nextQuestion(mod);
+  const skipBtn = document.getElementById(mod + '-skip');
+  if (skipBtn) skipBtn.onclick = () => nextQuestion(mod);
+  const revealBtn = document.getElementById(mod + '-reveal');
+  if (revealBtn) revealBtn.onclick = () => revealAnswer(mod);
+}
+
+function checkAnswer(mod) {
+  const verb = state[mod].currentVerb;
+  const inpInf  = document.getElementById(mod + '-inf');
+  const inpPres = document.getElementById(mod + '-pres');
+  const inpPret = document.getElementById(mod + '-pret');
+
+  const gotInf  = inpInf  ? inpInf.value.trim()  : '';
+  const gotPres = inpPres ? inpPres.value.trim() : '';
+  const gotPret = inpPret ? inpPret.value.trim() : '';
+
+  // Find which verb the user intended — try the current verb first,
+  // then any synonym (same Spanish translation) that matches what was typed
+  const synonyms = VERBS.filter(v =>
+    v.es === verb.es ||
+    v.es.split(',').map(s => s.trim()).some(s => verb.es.split(',').map(t => t.trim()).includes(s))
+  );
+
+  let matchedVerb = null;
+  let infOK = false, presOK = false, pretOK = false;
+
+  for (const candidate of synonyms) {
+    const stem = getInfExpected(candidate.inf);
+    const iOK = compareForms(gotInf,  stem,           []);
+    const rOK = compareForms(gotPres, candidate.pres, getAlternates(candidate.pres));
+    const tOK = compareForms(gotPret, candidate.pret, getAlternates(candidate.pret));
+    if (iOK) {
+      matchedVerb = candidate;
+      infOK  = true;
+      presOK = rOK;
+      pretOK = tOK;
+      break;
+    }
+  }
+
+  if (!matchedVerb) {
+    matchedVerb = verb;
+    infOK  = false;
+    presOK = compareForms(gotPres, verb.pres, getAlternates(verb.pres));
+    pretOK = compareForms(gotPret, verb.pret, getAlternates(verb.pret));
+  }
+
+  const verbStem = getInfExpected(matchedVerb.inf);
+
+  // Store results so renderQuizCard can display them after re-render
+  state[mod].fieldResults = {
+    inf:  { ok: infOK,  got: gotInf,  correct: verbStem },
+    pres: { ok: presOK, got: gotPres, correct: matchedVerb.pres },
+    pret: { ok: pretOK, got: gotPret, correct: matchedVerb.pret }
+  };
+
+  // If a synonym was accepted but it's not the "official" verb, note it
+  const usedSynonym = matchedVerb.inf !== verb.inf;
+  const synonymNote = usedSynonym
+    ? `<div style="margin-top:6px;font-size:13px;">Has usado el sinónimo <b>${escapeHtml(matchedVerb.inf)}</b> — también válido.</div>`
+    : '';
+
+  // Show all synonyms in the "correct forms" list
+  const allSynonymsHTML = synonyms.length > 1
+    ? `<div style="margin-top:6px;font-size:12px;color:var(--ink-muted);font-style:italic;">Sinónimos: ${synonyms.map(s => escapeHtml(s.inf)).join(', ')}</div>`
+    : '';
+
+  state[mod].sessionStats.total += 1;
+
+  let feedbackCls, feedbackHTML;
+  if (infOK && presOK && pretOK) {
+    state[mod].sessionStats.correct += 1;
+    if (mod === 'm1') {
+      state.m1.correctStreak[verb.inf] = (state.m1.correctStreak[verb.inf] || 0) + 1;
+    }
+    feedbackCls = 'feedback correct show';
+    feedbackHTML = `<strong>Riktig! · Correcto</strong>
+      ${groupTagHTML(matchedVerb.group)}
+      ${synonymNote}
+      ${matchedVerb.note ? `<div style="margin-top:8px;font-size:14px;font-style:italic;">${escapeHtml(matchedVerb.note)}</div>` : ''}
+      <div class="form-list">
+        <span>infinitivo:</span> <b>${escapeHtml(matchedVerb.inf)}</b> ·
+        <span>pres.:</span> <b>${escapeHtml(matchedVerb.pres)}</b> ·
+        <span>pret.:</span> <b>${escapeHtml(matchedVerb.pret)}</b> ·
+        <span>perf.:</span> <b>${escapeHtml(matchedVerb.perf)}</b>
+      </div>${allSynonymsHTML}
+      <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`;
+  } else {
+    if (mod === 'm1') state.m1.correctStreak[verb.inf] = 0;
+    let why = [];
+    if (!infOK)  why.push('el <b>infinitivo</b>');
+    if (!presOK) why.push('el <b>presente</b>');
+    if (!pretOK) why.push('el <b>pretérito</b>');
+    feedbackCls = 'feedback incorrect show';
+    // Show all accepted synonyms so the user knows what would be valid
+    const acceptedList = synonyms.map(s => `<b>${escapeHtml(s.inf)}</b>`).join(', ');
+    feedbackHTML = `<strong>Feil · Incorrecto</strong>
+      ${groupTagHTML(matchedVerb.group)}
+      <div style="margin-top:6px;">Hay errores en: ${why.join(', ')}.</div>
+      ${synonyms.length > 1 ? `<div style="margin-top:6px;font-size:13px;">Infinitivos válidos: ${acceptedList}</div>` : ''}
+      <div style="margin-top:8px;font-style:italic;">${explainGroup(matchedVerb)}</div>
+      ${matchedVerb.note ? `<div style="margin-top:8px;font-size:14px;font-weight:500;">⚠ ${escapeHtml(matchedVerb.note)}</div>` : ''}
+      <div class="form-list">
+        <span>infinitivo:</span> <b>${escapeHtml(matchedVerb.inf)}</b> ·
+        <span>pres.:</span> <b>${escapeHtml(matchedVerb.pres)}</b> ·
+        <span>pret.:</span> <b>${escapeHtml(matchedVerb.pret)}</b> ·
+        <span>perf.:</span> <b>${escapeHtml(matchedVerb.perf)}</b>
+      </div>
+      <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`;
+  }
+
+  state[mod].pendingFeedback = { cls: feedbackCls, html: feedbackHTML };
+  state[mod].awaitingNext = true;
+  saveState();
+  if (mod === 'm1') renderM1();
+  if (mod === 'm2') renderM2();
+  updateMeta();
+
+  const fb = document.getElementById(mod + '-feedback');
+  if (fb && state[mod].pendingFeedback) {
+    fb.className = state[mod].pendingFeedback.cls;
+    fb.innerHTML = state[mod].pendingFeedback.html;
+  }
+}
+
+function revealAnswer(mod) {
+  const verb = state[mod].currentVerb;
+  const verbStem = verb.inf.replace(/^å /, '');
+
+  const gotInf  = (document.getElementById(mod + '-inf')  || {}).value || '';
+  const gotPres = (document.getElementById(mod + '-pres') || {}).value || '';
+  const gotPret = (document.getElementById(mod + '-pret') || {}).value || '';
+
+  // All synonyms for this verb
+  const synonyms = VERBS.filter(v =>
+    v.es === verb.es ||
+    v.es.split(',').map(s => s.trim()).some(s => verb.es.split(',').map(t => t.trim()).includes(s))
+  );
+  const acceptedList = synonyms.map(s => `<b>${escapeHtml(s.inf)}</b>`).join(', ');
+
+  state[mod].fieldResults = {
+    inf:  { ok: false, got: gotInf,  correct: getInfExpected(verb.inf) },
+    pres: { ok: false, got: gotPres, correct: verb.pres },
+    pret: { ok: false, got: gotPret, correct: verb.pret }
+  };
+
+  state[mod].sessionStats.total += 1;
+  if (mod === 'm1') state.m1.correctStreak[verb.inf] = 0;
+
+  state[mod].pendingFeedback = {
+    cls: 'feedback show',
+    html: `<strong>Respuesta revelada · Feil</strong>
+      ${groupTagHTML(verb.group)}
+      ${synonyms.length > 1 ? `<div style="margin-top:6px;font-size:13px;">Infinitivos válidos: ${acceptedList}</div>` : ''}
+      <div style="margin-top:8px;font-style:italic;">${explainGroup(verb)}</div>
+      ${verb.note ? `<div style="margin-top:8px;font-weight:500;">⚠ ${escapeHtml(verb.note)}</div>` : ''}
+      <div class="form-list">
+        <span>infinitivo:</span> <b>${escapeHtml(verb.inf)}</b> ·
+        <span>pres.:</span> <b>${escapeHtml(verb.pres)}</b> ·
+        <span>pret.:</span> <b>${escapeHtml(verb.pret)}</b> ·
+        <span>perf.:</span> <b>${escapeHtml(verb.perf)}</b>
+      </div>
+      <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`,
+    amber: true
+  };
+
+  state[mod].awaitingNext = true;
+  saveState();
+  if (mod === 'm1') renderM1();
+  if (mod === 'm2') renderM2();
+  updateMeta();
+
+  const fb = document.getElementById(mod + '-feedback');
+  if (fb && state[mod].pendingFeedback) {
+    fb.className = state[mod].pendingFeedback.cls;
+    if (state[mod].pendingFeedback.amber) {
+      fb.style.background = 'var(--bg-warm)';
+      fb.style.borderColor = 'var(--amber)';
+      fb.style.color = 'var(--ink)';
+    }
+    fb.innerHTML = state[mod].pendingFeedback.html;
+  }
+}
+
+function nextQuestion(mod) {
+  state[mod].currentVerb = null;
+  state[mod].awaitingNext = false;
+  state[mod].fieldResults = null;
+  state[mod].pendingFeedback = null;
+  if (mod === 'm1') renderM1();
+  if (mod === 'm2') renderM2();
+}
+
+function explainGroup(verb) {
+  const explanations = {
+    1: `<b>Grupo 1 (-et)</b>: vocal corta + consonante doble o múltiple. El presente añade <b>-r</b> al infinitivo, el pretérito añade <b>-et</b>. Ejemplo: jobbe → jobber → jobbet.`,
+    2: `<b>Grupo 2 (-te)</b>: vocal larga + consonante simple, o terminaciones como <b>-se</b>, <b>-ke</b>, <b>-pe</b>, <b>-ere</b>. El pretérito acaba en <b>-te</b>. Ejemplo: spise → spiser → spiste.`,
+    3: `<b>Grupo 3 (-de)</b>: verbos que acaban en <b>-eie</b> o <b>-ve</b>. El pretérito acaba en <b>-de</b>. Ejemplo: leie → leier → leide.`,
+    4: `<b>Grupo 4 (-dde)</b>: verbos monosílabos terminados en vocal (no -e). El pretérito duplica la <b>d</b>: <b>-dde</b>. Ejemplo: bo → bor → bodde.`,
+    'irr': `<b>Verbo irregular (sterk verb)</b>: hay que aprenderlo de memoria. Suele cambiar la vocal en el pretérito y no sigue las terminaciones regulares. Ejemplo: drikke → drikker → drakk.`
+  };
+  return explanations[verb.group] || '';
+}
+
+/* ============================================================
+   MODULE 3 - FILL IN THE BLANK
+   ============================================================ */
+
+function pickSentenceM3() {
+  let candidates = SENTENCES;
+  if (state.m3.currentSentence && SENTENCES.length > 1) {
+    candidates = SENTENCES.filter(s => s.no !== state.m3.currentSentence.no);
+  }
+  return pickRandom(candidates);
+}
+
+function renderM3() {
+  const root = document.getElementById('m3-content');
+  let html = '';
+
+  const correctPct = state.m3.sessionStats.total > 0
+    ? Math.round(100 * state.m3.sessionStats.correct / state.m3.sessionStats.total) : 0;
+
+  html += `<div class="info-block">
+    <b>Frases con huecos</b> — Lee la frase, mira la pista (verbo en español),
+    y escribe la forma noruega correcta en cada hueco. El tiempo verbal se revela al comprobar.
+  </div>`;
+
+  html += `<div class="stats-bar">
+    <div class="stat"><div class="stat-label">Aciertos</div><div class="stat-value aurora">${state.m3.sessionStats.correct}</div></div>
+    <div class="stat"><div class="stat-label">Fallos</div><div class="stat-value coral">${state.m3.sessionStats.total - state.m3.sessionStats.correct}</div></div>
+    <div class="stat"><div class="stat-label">Intentos</div><div class="stat-value">${state.m3.sessionStats.total}</div></div>
+    <div class="stat"><div class="stat-label">% acierto</div><div class="stat-value">${correctPct}%</div></div>
+  </div>`;
+
+  if (!state.m3.currentSentence) {
+    state.m3.currentSentence = pickSentenceM3();
+    state.m3.submitted = false;
+  }
+
+  const sent = state.m3.currentSentence;
+
+  // Build the sentence — inputs when active, static results when awaiting next
+  let sentenceHTML = '';
+  let blankIdx = 0;
+  const parts = sent.no.split('___');
+  for (let i = 0; i < parts.length; i++) {
+    sentenceHTML += escapeHtml(parts[i]);
+    if (i < parts.length - 1) {
+      if (state.m3.awaitingNext && state.m3.blankResults && state.m3.blankResults[blankIdx] !== undefined) {
+        const res = state.m3.blankResults[blankIdx];
+        if (res.ok) {
+          sentenceHTML += `<span class="blank-spot ok"><span style="color:var(--aurora);font-weight:600;">${escapeHtml(res.correct)}</span></span>`;
+        } else {
+          sentenceHTML += `<span class="blank-spot bad"><span style="color:var(--coral);font-weight:700;">${escapeHtml(res.correct)}</span></span>`;
+        }
+      } else {
+        sentenceHTML += `<span class="blank-spot" id="m3-blank-${blankIdx}"><input type="text" id="m3-input-${blankIdx}" autocomplete="off" autocapitalize="off" spellcheck="false" data-idx="${blankIdx}" /></span>`;
+      }
+      blankIdx++;
+    }
+  }
+
+  // Hint row — before checking: show Spanish only; after checking: show tense too
+  let hintsHTML = '';
+  for (let i = 0; i < sent.blanks.length; i++) {
+    const b = sent.blanks[i];
+    const verbData = VERBS.find(v => v.inf === b.inf);
+    const spanishWord = verbData ? verbData.es : b.inf;
+    const tenseLabels = {
+      'pres': { es: 'presente', cls: 'tense-pres' },
+      'pret': { es: 'pretérito', cls: 'tense-pret' },
+      'inf':  { es: 'infinitivo (sin "å", tras modal)', cls: 'tense-inf' }
+    };
+    const tl = tenseLabels[b.tense];
+    if (state.m3.awaitingNext) {
+      hintsHTML += `<span class="h ${tl.cls}">Hueco ${i+1}: ${escapeHtml(spanishWord)} → <b>${tl.es}</b></span>`;
+    } else {
+      hintsHTML += `<span class="h">Hueco ${i+1}: <b>${escapeHtml(spanishWord)}</b></span>`;
+    }
+  }
+
+  html += `<div class="card large">
+    <span class="kicker amber">FRASE EN CONTEXTO</span>
+    <div class="sentence">${sentenceHTML}</div>
+    <div class="hint-row">${hintsHTML}</div>
+    <div class="translation-line">${escapeHtml(sent.es)}</div>
+    <div style="height:18px;"></div>
+    <div class="button-row">
+      ${state.m3.awaitingNext
+        ? `<button class="btn aurora" id="m3-next">Siguiente frase →</button>
+           <button class="btn ghost" id="m3-skip">Otra distinta</button>`
+        : `<button class="btn" id="m3-check">Comprobar</button>
+           <button class="btn ghost" id="m3-reveal">Mostrar respuesta</button>`}
+    </div>
+    <div class="feedback" id="m3-feedback"></div>
+  </div>`;
+
+  root.innerHTML = html;
+
+  // Attach handlers — inputs only exist when NOT awaitingNext
+  if (!state.m3.awaitingNext) {
+    for (let i = 0; i < sent.blanks.length; i++) {
+      const inp = document.getElementById('m3-input-' + i);
+      if (!inp) continue;
+      if (i === 0) inp.focus();
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const next = document.getElementById('m3-input-' + (i + 1));
+          if (next) next.focus();
+          else {
+            const checkBtn = document.getElementById('m3-check');
+            if (checkBtn) { enterCooldown = true; setTimeout(() => { enterCooldown = false; }, 300); checkBtn.click(); }
+          }
+        }
+      });
+    }
+  }
+  const checkBtn = document.getElementById('m3-check');
+  if (checkBtn) checkBtn.onclick = checkM3;
+  const nextBtn = document.getElementById('m3-next');
+  if (nextBtn) nextBtn.onclick = nextM3;
+  const skipBtn = document.getElementById('m3-skip');
+  if (skipBtn) skipBtn.onclick = nextM3;
+  const revealBtn = document.getElementById('m3-reveal');
+  if (revealBtn) revealBtn.onclick = revealM3;
+
+  // Inject pending feedback (set by checkM3/revealM3 before calling renderM3)
+  if (state.m3.pendingFeedback) {
+    const fb = document.getElementById('m3-feedback');
+    if (fb) {
+      fb.className = state.m3.pendingFeedback.cls;
+      if (state.m3.pendingFeedback.amber) {
+        fb.style.background = 'var(--bg-warm)';
+        fb.style.borderColor = 'var(--amber)';
+        fb.style.color = 'var(--ink)';
+      }
+      fb.innerHTML = state.m3.pendingFeedback.html;
+    }
+  }
+}
+
+function getExpectedFormForBlank(blank) {
+  const verb = VERBS.find(v => v.inf === blank.inf);
+  if (!verb) return { value: '???', verb: null };
+  let val;
+  if (blank.tense === 'pres') val = verb.pres;
+  else if (blank.tense === 'pret') val = verb.pret;
+  else val = verb.inf.replace(/^å /, '');
+  return { value: val, verb };
+}
+
+function checkM3() {
+  const sent = state.m3.currentSentence;
+  let allOK = true;
+  let details = [];
+
+  state.m3.blankResults = {};
+
+  for (let i = 0; i < sent.blanks.length; i++) {
+    const blank = sent.blanks[i];
+    const expected = getExpectedFormForBlank(blank);
+    const inp = document.getElementById('m3-input-' + i);
+    const got = inp ? inp.value.trim() : '';
+    const ok = compareForms(got, expected.value, getAlternates(expected.value));
+    state.m3.blankResults[i] = { ok, correct: expected.value, got };
+    if (!ok) allOK = false;
+    details.push({ idx: i, ok, expected: expected.value, got, verb: expected.verb, tense: blank.tense });
+  }
+
+  state.m3.sessionStats.total += 1;
+  if (allOK) state.m3.sessionStats.correct += 1;
+
+  let feedbackCls, feedbackHTML;
+  if (allOK) {
+    feedbackCls = 'feedback correct show';
+    feedbackHTML = `<strong>Riktig! · Correcto</strong>
+      <div style="margin-top:8px;">${details.map(d => {
+        const tn = d.tense === 'pres' ? 'presente' : d.tense === 'pret' ? 'pretérito' : 'infinitivo';
+        return `Hueco ${d.idx+1} (${tn}): <b>${escapeHtml(d.expected)}</b>`;
+      }).join(' · ')}</div>
+      <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContextM3())">⚑ Reportar error</button></div>`;
+  } else {
+    feedbackCls = 'feedback incorrect show';
+    let fh = `<strong>Feil · Algunos huecos están mal</strong>`;
+    for (const d of details) {
+      const tn = d.tense === 'pres' ? 'presente' : d.tense === 'pret' ? 'pretérito' : 'infinitivo';
+      fh += `<div style="margin-top:8px;"><b>Hueco ${d.idx+1}</b> (${tn} de ${escapeHtml(d.verb ? d.verb.inf : '?')}): `;
+      if (d.ok) {
+        fh += `<span style="color:var(--aurora);">✓ ${escapeHtml(d.expected)}</span>`;
+      } else {
+        fh += `<span style="color:var(--coral);">✗ "${escapeHtml(d.got || '(vacío)')}"</span> → la respuesta es <b>${escapeHtml(d.expected)}</b>`;
+        if (d.verb) fh += `<div style="font-size:13px;margin-top:4px;font-style:italic;">${explainGroup(d.verb)}</div>`;
+      }
+      fh += `</div>`;
+    }
+    fh += `<div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContextM3())">⚑ Reportar error</button></div>`;
+    feedbackHTML = fh;
+  }
+
+  state.m3.pendingFeedback = { cls: feedbackCls, html: feedbackHTML };
+  state.m3.awaitingNext = true;
+  renderM3();
+}
+
+function revealM3() {
+  const sent = state.m3.currentSentence;
+  state.m3.sessionStats.total += 1;
+
+  state.m3.blankResults = {};
+  for (let i = 0; i < sent.blanks.length; i++) {
+    const expected = getExpectedFormForBlank(sent.blanks[i]);
+    state.m3.blankResults[i] = { ok: false, correct: expected.value, got: '' };
+  }
+
+  let html = `<strong>Respuesta revelada · Feil</strong>`;
+  for (let i = 0; i < sent.blanks.length; i++) {
+    const b = sent.blanks[i];
+    const expected = getExpectedFormForBlank(b);
+    const tn = b.tense === 'pres' ? 'presente' : b.tense === 'pret' ? 'pretérito' : 'infinitivo';
+    html += `<div style="margin-top:8px;"><b>Hueco ${i+1}</b> (${tn} de ${escapeHtml(b.inf)}): <b>${escapeHtml(expected.value)}</b></div>`;
+  }
+  html += `<div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContextM3())">⚑ Reportar error</button></div>`;
+  state.m3.pendingFeedback = { cls: 'feedback show', html, amber: true };
+
+  state.m3.awaitingNext = true;
+  renderM3();
+}
+
+function nextM3() {
+  state.m3.currentSentence = null;
+  state.m3.awaitingNext = false;
+  state.m3.blankResults = null;
+  state.m3.pendingFeedback = null;
+  renderM3();
+}
+
+/* ============================================================
+   MODULE 4 - DICTIONARY
+   ============================================================ */
+
+function renderM4() {
+  const root = document.getElementById('m4-content');
+
+  let html = '';
+  html += `<div class="info-block">
+    <b>Diccionario</b> — Busca, ordena y consulta los <b>${VERBS.length} verbos</b> de tu colección.
+    Puedes ordenarlos por categoría/grupo, alfabéticamente en noruego o en español.
+  </div>`;
+
+  html += `<div class="dict-controls">
+    <div class="search">
+      <input type="text" id="m4-search" placeholder="Buscar… (noruego o español, e.g. 'å bo' o 'vivir')" value="${escapeHtml(state.m4.search)}" />
+    </div>
+    <div class="sort-buttons">
+      <button data-sort="group" class="${state.m4.sortBy === 'group' ? 'active' : ''}">Por categoría</button>
+      <button data-sort="alpha-no" class="${state.m4.sortBy === 'alpha-no' ? 'active' : ''}">A-Z noruego</button>
+      <button data-sort="alpha-es" class="${state.m4.sortBy === 'alpha-es' ? 'active' : ''}">A-Z español</button>
+    </div>
+  </div>`;
+
+  // Filter
+  const q = state.m4.search.trim().toLowerCase();
+  let filtered = VERBS;
+  if (q) {
+    filtered = VERBS.filter(v =>
+      v.inf.toLowerCase().includes(q) ||
+      v.pres.toLowerCase().includes(q) ||
+      v.pret.toLowerCase().includes(q) ||
+      v.es.toLowerCase().includes(q)
+    );
+  }
+
+  // Sort
+  if (state.m4.sortBy === 'group') {
+    const groupOrder = { 1: 1, 2: 2, 3: 3, 4: 4, 'irr': 5 };
+    filtered = filtered.slice().sort((a, b) => {
+      const ga = groupOrder[a.group] || 99;
+      const gb = groupOrder[b.group] || 99;
+      if (ga !== gb) return ga - gb;
+      return a.inf.localeCompare(b.inf, 'no');
+    });
+  } else if (state.m4.sortBy === 'alpha-no') {
+    filtered = filtered.slice().sort((a, b) =>
+      a.inf.replace(/^å /, '').localeCompare(b.inf.replace(/^å /, ''), 'no')
+    );
+  } else if (state.m4.sortBy === 'alpha-es') {
+    filtered = filtered.slice().sort((a, b) => a.es.localeCompare(b.es, 'es'));
+  }
+
+  html += `<div class="dict-stats">${filtered.length} de ${VERBS.length} verbos</div>`;
+
+  html += `<div class="dict-table">`;
+  html += `<div class="dict-row header">
+    <div>Gr</div>
+    <div>Infinitivo</div>
+    <div>Presens</div>
+    <div>Preteritum</div>
+    <div>Perfektum</div>
+    <div>Español</div>
+  </div>`;
+
+  for (const v of filtered) {
+    const cls = (v.group === 'irr') ? 'irr' : 'g' + v.group;
+    const grpLabel = v.group === 'irr' ? 'IR' : v.group;
+    html += `<div class="dict-row">
+      <div class="grp ${cls}">${grpLabel}</div>
+      <div>${escapeHtml(v.inf)}</div>
+      <div>${escapeHtml(v.pres)}</div>
+      <div>${escapeHtml(v.pret)}</div>
+      <div>${escapeHtml(v.perf)}</div>
+      <div class="es">${escapeHtml(v.es)}</div>
+    </div>`;
+  }
+  html += `</div>`;
+
+  root.innerHTML = html;
+
+  // Handlers
+  const searchInput = document.getElementById('m4-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', e => {
+      state.m4.search = e.target.value;
+      renderM4();
+      // Restore focus and cursor position
+      const newInput = document.getElementById('m4-search');
+      if (newInput) {
+        newInput.focus();
+        newInput.setSelectionRange(state.m4.search.length, state.m4.search.length);
+      }
+    });
+  }
+  document.querySelectorAll('.sort-buttons button').forEach(btn => {
+    btn.onclick = () => {
+      state.m4.sortBy = btn.dataset.sort;
+      renderM4();
+    };
+  });
+}
+
+/* ============================================================
+   APP INIT / TABS / META
+   ============================================================ */
+
+function updateMeta() {
+  document.getElementById('meta-total').textContent = VERBS.length;
+  const learned = Object.values(state.m1.correctStreak || {}).filter(c => c >= 2).length;
+  document.getElementById('meta-progress').textContent = learned;
+}
+
+function activateTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+
+  if (tab === 'm1') renderM1();
+  else if (tab === 'm2') renderM2();
+  else if (tab === 'm3') renderM3();
+  else if (tab === 'm4') renderM4();
+}
+
+/* ============================================================
+   MODAL HELPER
+   ============================================================ */
+function showModal(contentHTML) {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-content').innerHTML = contentHTML;
+  overlay.style.display = 'flex';
+  overlay.onclick = e => { if (e.target === overlay) closeModal(); };
+}
+function closeModal() {
+  const overlay = document.getElementById('modal-overlay');
+  overlay.style.display = 'none';
+}
+
+/* ============================================================
+   LEVEL UNLOCK
+   ============================================================ */
+function showUnlockDialog() {
+  const maxLevel = Math.max(...Object.keys(LEVEL_PASSWORDS).map(Number));
+  let opts = '';
+  for (let lvl = 2; lvl <= maxLevel; lvl++) {
+    const already = state.m1.unlockedLevel >= lvl || state.m1.levelSize >= lvl;
+    opts += `<option value="${lvl}" ${already ? 'disabled' : ''}>${already ? '✓ ' : ''}Nivel ${lvl}</option>`;
+  }
+  showModal(`
+    <h3 style="font-family:'Fraunces',serif;margin:0 0 16px;">Desbloquear nivel</h3>
+    <p style="color:var(--ink-muted);font-size:14px;margin-bottom:18px;">Introduce la contraseña del nivel que quieres desbloquear. Todos los niveles anteriores quedarán también desbloqueados.</p>
+    <div style="margin-bottom:12px;">
+      <label style="font-size:13px;display:block;margin-bottom:6px;">Nivel a desbloquear</label>
+      <select id="unlock-level" style="width:100%;padding:8px;border:1px solid var(--rule);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--bg);">
+        ${opts}
+      </select>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label style="font-size:13px;display:block;margin-bottom:6px;">Contraseña</label>
+      <input id="unlock-pw" type="password" placeholder="contraseña del nivel" style="width:100%;padding:8px;border:1px solid var(--rule);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--bg);box-sizing:border-box;" />
+    </div>
+    <div id="unlock-msg" style="min-height:20px;font-size:13px;margin-bottom:14px;"></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn" onclick="tryUnlock()">Desbloquear</button>
+      <button class="btn ghost" onclick="closeModal()">Cancelar</button>
+    </div>
+  `);
+  const pwInp = document.getElementById('unlock-pw');
+  if (pwInp) pwInp.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+}
+
+function tryUnlock() {
+  const lvl = parseInt(document.getElementById('unlock-level').value);
+  const pw  = document.getElementById('unlock-pw').value.trim().toLowerCase();
+  const msg = document.getElementById('unlock-msg');
+  if (!lvl || isNaN(lvl)) { msg.style.color = 'var(--coral)'; msg.textContent = 'Selecciona un nivel.'; return; }
+  if (pw === LEVEL_PASSWORDS[lvl]) {
+    // Unlock this level and all below it
+    state.m1.unlockedLevel = Math.max(state.m1.unlockedLevel, lvl);
+    state.m1.levelSize = Math.max(state.m1.levelSize, lvl);
+    state.m1.levelComplete = false;
+    state.m1.currentVerb = null;
+    state.m1.awaitingNext = false;
+    saveState();
+    closeModal();
+    renderM1();
+    updateMeta();
+  } else {
+    msg.style.color = 'var(--coral)';
+    msg.textContent = 'Contraseña incorrecta. Inténtalo de nuevo.';
+  }
+}
+
+/* ============================================================
+   REPORT A BUG / ERROR
+   ============================================================ */
+function reportError(context) {
+  const ts = new Date().toLocaleString('es-ES');
+  const text = `[${ts}] ${context}`;
+  showModal(`
+    <h3 style="font-family:'Fraunces',serif;margin:0 0 12px;">Reportar error</h3>
+    <p style="color:var(--ink-muted);font-size:13px;margin-bottom:12px;">Copia el texto siguiente y envíalo para reportar el fallo:</p>
+    <textarea id="report-text" readonly style="width:100%;height:100px;font-family:'JetBrains Mono',monospace;font-size:12px;padding:10px;border:1px solid var(--rule);border-radius:2px;background:var(--bg-warm);resize:none;box-sizing:border-box;">${text}</textarea>
+    <div id="report-save-msg" style="font-size:13px;margin:10px 0;min-height:18px;"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn" onclick="copyReport()">Copiar al portapapeles</button>
+      <button class="btn ghost" onclick="downloadReport('${encodeURIComponent(text)}')">Descargar .txt</button>
+      <button class="btn ghost" onclick="closeModal()">Cerrar</button>
+    </div>
+  `);
+}
+
+function copyReport() {
+  const ta = document.getElementById('report-text');
+  if (!ta) return;
+  navigator.clipboard.writeText(ta.value).then(() => {
+    const msg = document.getElementById('report-save-msg');
+    if (msg) { msg.style.color = 'var(--aurora)'; msg.textContent = '¡Copiado al portapapeles!'; }
+  }).catch(() => {
+    ta.select(); document.execCommand('copy');
+  });
+}
+
+function downloadReport(encoded) {
+  const text = decodeURIComponent(encoded);
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'norske_verb_reporte.txt';
+  a.click();
+  const msg = document.getElementById('report-save-msg');
+  if (msg) { msg.style.color = 'var(--aurora)'; msg.textContent = 'Archivo descargado.'; }
+}
+
+// Build report context from current verb state
+function buildReportContext(mod) {
+  const verb = state[mod] && state[mod].currentVerb;
+  if (!verb) return 'Sin verbo activo.';
+  const fi = document.getElementById(mod + '-inf');
+  const fp = document.getElementById(mod + '-pres');
+  const ft = document.getElementById(mod + '-pret');
+  const got = `inf="${fi ? fi.value : '?'}" pres="${fp ? fp.value : '?'}" pret="${ft ? ft.value : '?'}"`;
+  return `Módulo: ${mod} | Verbo: ${verb.inf} (${verb.es}) | Respuesta dada: ${got} | Correcto: inf="${verb.inf}" pres="${verb.pres}" pret="${verb.pret}"`;
+}
+function buildReportContextM3() {
+  const sent = state.m3.currentSentence;
+  if (!sent) return 'Sin frase activa.';
+  return `Módulo: m3 | Frase: "${sent.no}" | ES: "${sent.es}"`;
+}
+
+function renderAll() {
+  renderM1();
+  renderM2();
+  renderM3();
+  renderM4();
+  updateMeta();
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => activateTab(t.dataset.tab));
+});
+
+document.getElementById('reset-link').addEventListener('click', e => {
+  e.preventDefault();
+  resetProgress();
+});
+
+// Init
+loadState();
+renderAll();
+
+// Global Enter key: advance to next when awaiting
+// Uses a short cooldown to prevent the same Enter that triggered checkAnswer from also firing nextQuestion
+let enterCooldown = false;
+
+function triggerCheck(mod) {
+  enterCooldown = true;
+  setTimeout(() => { enterCooldown = false; }, 300);
+  if (mod === 'm1' || mod === 'm2') checkAnswer(mod);
+  else if (mod === 'm3') checkM3();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const tag = document.activeElement && document.activeElement.tagName;
+  if (tag === 'TEXTAREA') return;
+  if (tag === 'SELECT') return;
+  const overlay = document.getElementById('modal-overlay');
+  if (overlay && overlay.style.display !== 'none') return;
+  if (enterCooldown) return;
+
+  const activeTab = document.querySelector('.panel.active');
+  if (!activeTab) return;
+  const mod = activeTab.id.replace('panel-', '');
+
+  if (mod === 'm1' || mod === 'm2') {
+    if (state[mod] && state[mod].awaitingNext) {
+      e.preventDefault();
+      nextQuestion(mod);
+    }
+  } else if (mod === 'm3') {
+    if (state.m3.awaitingNext) {
+      e.preventDefault();
+      nextM3();
+    }
+  }
+});
+</script>
+</body>
+</html>
