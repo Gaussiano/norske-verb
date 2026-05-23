@@ -8,13 +8,20 @@ navegador mediante `localStorage`.
 
 ## Características
 
-- **295 verbos** en la base de datos, de los cuales **48** pertenecen a la lista
+- **297 verbos** en la base de datos, de los cuales **48** pertenecen a la lista
   estructurada del curso A1.
 - Clasificación por grupos de conjugación: Grupo 1 (-et), Grupo 2 (-te),
   Grupo 3 (-de), Grupo 4 (-dde) e irregulares.
 - Reconocimiento de **sinónimos**: si un verbo en español tiene varias
-  traducciones noruegas (p. ej. *trabajar* → `jobbe` / `arbeide`), se aceptan
-  todas como válidas.
+  traducciones noruegas, se aceptan todas como válidas. Ejemplos:
+  - *trabajar* → `å jobbe` / `å arbeide`
+  - *practicar* → `å øve` / `å praktisere` / `å drive med`
+  - *repetir* → `å gjenta` / `å repetere`
+  - *descansar* → `å hvile` / `å slappe av`
+
+  El emparejamiento se hace por coincidencia en el campo de traducción
+  española (separado por comas), de forma que añadir un sinónimo nuevo basta
+  con incluir la palabra en español compartida.
 - Tolerancia de entrada: acepta sustituciones ASCII (`ae`→æ, `oe`→ø, `aa`→å) y
   variantes conocidas (`ba`/`bad`, `ga`/`gav`, `sto`/`stod`, `dro`/`drog`).
 - Diseño responsive de estética nórdica; funciona igual en móvil y escritorio.
@@ -88,6 +95,29 @@ en `https://TU_USUARIO.github.io/norske-verb/`.
   (pertenencia y orden en la lista del curso A1) y `note` (excepciones).
 - **Frases**: array de objetos con `no` (frase noruega con `___`), `es`
   (traducción) y `blanks` (verbo y tiempo de cada hueco).
+
+## Versionado
+
+La versión se muestra en el pie de `index.html` y debe coincidir con la
+entrada más reciente del historial de abajo. Sigue **SemVer** (`MAJOR.MINOR.PATCH`):
+
+| Dígito | Cuándo se bumpea |
+|--------|------------------|
+| **PATCH** (`v1.1.→1`) | Cada petición de cambio: ajustes de UI, conjugaciones, traducciones, sinónimos puntuales, documentación. Es el caso por defecto. |
+| **MINOR** (`v1.→2.0`) | Cambios grandes: nuevo módulo, lote amplio de verbos o frases, refactor visible. Se acuerda con el usuario antes de subirlo. |
+| **MAJOR** (`→2.0.0`) | Cambio incompatible: estructura de `localStorage` o de la base de verbos que rompa el progreso guardado (requiere migración). |
+
+## Historial de versiones
+
+- **v1.1.1** — Sección de sinónimos en el README ampliada con ejemplos
+  concretos; añadido este control de versiones y changelog.
+- **v1.1.0** — Nuevos verbos noruegos sinónimos: `å praktisere` (grupo 2) y
+  `å drive med` (irregular) para *practicar*; ampliada la traducción de
+  `å slappe av` para incluir *descansar* y enlazarlo así con `å hvile`.
+- **v1.0.0** — Primera versión publicada: 295 verbos, 4 módulos
+  (aprendizaje progresivo, práctica aleatoria, frases con huecos,
+  diccionario), 58 frases, sistema de niveles con contraseñas y
+  persistencia en `localStorage`.
 
 ## Licencia
 
