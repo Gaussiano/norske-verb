@@ -1440,7 +1440,8 @@ function saveState() {
       m1Level: state.m1.levelSize,
       m1Stats: state.m1.sessionStats,
       m1UnlockedLevel: state.m1.unlockedLevel,
-      settingsAskA: state.settings.askA
+      settingsAskA: state.settings.askA,
+	  m1Streak: state.m1.correctStreak
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persist));
   } catch (e) {}
@@ -1454,6 +1455,7 @@ function loadState() {
       if (obj.m1Level) state.m1.levelSize = obj.m1Level;
       if (obj.m1Stats) state.m1.sessionStats = obj.m1Stats;
       if (obj.m1UnlockedLevel) state.m1.unlockedLevel = obj.m1UnlockedLevel;
+	  if (obj.m1Streak) state.m1.correctStreak = obj.m1Streak;
       if (typeof obj.settingsAskA === 'boolean') state.settings.askA = obj.settingsAskA;
     }
   } catch (e) {}
