@@ -270,8 +270,13 @@ nav.tabs {
   margin-bottom: 20px;
 }
 
+.input-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.input-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+@media (max-width: 800px) {
+  .input-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 600px) {
-  .input-grid { grid-template-columns: 1fr; }
+  .input-grid, .input-grid.cols-3, .input-grid.cols-4 { grid-template-columns: 1fr; }
 }
 
 .field label {
@@ -375,7 +380,8 @@ nav.tabs {
 .settings-bar {
   display: flex;
   align-items: center;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 8px 24px;
   padding: 8px 24px;
   background: var(--bg-warm);
   border-bottom: 1px solid var(--rule);
@@ -653,6 +659,7 @@ nav.tabs {
 .hint-row .h.tense-pres b { color: var(--accent); }
 .hint-row .h.tense-pret b { color: var(--amber); }
 .hint-row .h.tense-inf b { color: var(--aurora); }
+.hint-row .h.tense-perf b { color: #8a6b9c; }
 
 .translation-line {
   font-family: 'Fraunces', serif;
@@ -745,6 +752,7 @@ nav.tabs {
   transition: background 0.15s ease;
 }
 
+.dict-table.no-perf .dict-row { grid-template-columns: 60px 1.5fr 1fr 1fr 2fr; }
 .dict-row:last-child { border-bottom: none; }
 .dict-row:hover { background: var(--bg-warm); }
 
@@ -805,6 +813,7 @@ nav.tabs {
   .dict-row .es { grid-column: 1 / -1; padding-top: 0; padding-bottom: 12px; border-top: 1px dashed var(--rule); padding-left: 70px; }
   .dict-row.header .es { display: none; }
   .dict-row.header { grid-template-columns: 50px 1fr 1fr; }
+  .dict-table.no-perf .dict-row { grid-template-columns: 50px 1fr 1fr; }
 }
 
 /* ==== EMPTY STATE / INFO ==== */
@@ -910,6 +919,11 @@ footer.foot a:hover { text-decoration: underline; }
     <span class="toggle-track"><span class="toggle-thumb"></span></span>
     <span class="setting-label">Pedir <b>å</b> en el infinitivo</span>
   </label>
+  <label class="setting-toggle" title="Si está activo, se muestra y se pregunta el pretérito perfecto (perfektum): har + participio (ej: jeg har reist).">
+    <input type="checkbox" id="setting-ask-perf" onchange="onPerfToggle()">
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    <span class="setting-label">Pretérito perfecto</span>
+  </label>
 </div>
 
 <nav class="tabs" id="tabs">
@@ -958,7 +972,7 @@ footer.foot a:hover { text-decoration: underline; }
 <footer class="foot">
   <p>Aprende noruego con paciencia, como el sol del invierno ártico —<br>
   poco a poco, pero seguro. <a id="reset-link">Reiniciar progreso</a></p>
-  <p style="margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;font-style:normal;letter-spacing:0.1em;opacity:0.6;">v1.1.1</p>
+  <p style="margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;font-style:normal;letter-spacing:0.1em;opacity:0.6;">v2.0.0</p>
 </footer>
 
 <!-- Modal overlay -->
@@ -1315,7 +1329,7 @@ const VERBS = [
    SENTENCES FOR MODULE 3
    Each sentence has blanks. Each blank has:
    - inf: infinitive of the verb
-   - tense: 'pres' | 'pret' | 'inf' (after modal)
+   - tense: 'pres' | 'pret' | 'perf' (participle after har) | 'inf' (after modal)
    ============================================================ */
 const SENTENCES = [
   { no: "Jeg ___ i Bilbao.", es: "Vivo en Bilbao.", blanks: [{ inf: "å bo", tense: "pres" }] },
@@ -1376,7 +1390,23 @@ const SENTENCES = [
   // Two-blank sentences
   { no: "I går ___ jeg på kafé og ___ kaffe.", es: "Ayer fui a la cafetería y bebí café.", blanks: [{ inf: "å gå", tense: "pret" }, { inf: "å drikke", tense: "pret" }] },
   { no: "Hun ___ klokka seks og ___ frokost.", es: "Se levanta a las seis y desayuna.", blanks: [{ inf: "å stå opp", tense: "pres" }, { inf: "å spise", tense: "pres" }] },
-  { no: "Jeg ___ til Norge fordi jeg vil ___ norsk.", es: "Me mudo a Noruega porque quiero aprender noruego.", blanks: [{ inf: "å flytte", tense: "pres" }, { inf: "å lære", tense: "inf" }] }
+  { no: "Jeg ___ til Norge fordi jeg vil ___ norsk.", es: "Me mudo a Noruega porque quiero aprender noruego.", blanks: [{ inf: "å flytte", tense: "pres" }, { inf: "å lære", tense: "inf" }] },
+  // Perfect tense (har + participle) — only asked when the "Pretérito perfecto" toggle is on
+  { no: "Jeg har ___ til Norge tre ganger.", es: "He viajado a Noruega tres veces.", blanks: [{ inf: "å reise", tense: "perf" }] },
+  { no: "Har du ___ frokost i dag?", es: "¿Has desayunado hoy?", blanks: [{ inf: "å spise", tense: "perf" }] },
+  { no: "Vi har ___ i Bergen i fem år.", es: "Hemos vivido en Bergen cinco años.", blanks: [{ inf: "å bo", tense: "perf" }] },
+  { no: "Hun har ___ den boka to ganger.", es: "Ella ha leído ese libro dos veces.", blanks: [{ inf: "å lese", tense: "perf" }] },
+  { no: "Har du ___ den nye filmen?", es: "¿Has visto la película nueva?", blanks: [{ inf: "å se", tense: "perf" }] },
+  { no: "Jeg har ___ et brev til bestemor.", es: "He escrito una carta a la abuela.", blanks: [{ inf: "å skrive", tense: "perf" }] },
+  { no: "Han har ___ for mye kaffe i dag.", es: "Hoy ha bebido demasiado café.", blanks: [{ inf: "å drikke", tense: "perf" }] },
+  { no: "Hva har du ___ i helgen?", es: "¿Qué has hecho este fin de semana?", blanks: [{ inf: "å gjøre", tense: "perf" }] },
+  { no: "Vi har ___ et nytt hus.", es: "Hemos comprado una casa nueva.", blanks: [{ inf: "å kjøpe", tense: "perf" }] },
+  { no: "Jeg har aldri ___ i Tromsø.", es: "Nunca he estado en Tromsø.", blanks: [{ inf: "å være", tense: "perf" }] },
+  { no: "De har ___ mye å gjøre denne uka.", es: "Han tenido mucho que hacer esta semana.", blanks: [{ inf: "å ha", tense: "perf" }] },
+  { no: "Jeg har ___ mye norsk i år.", es: "He aprendido mucho noruego este año.", blanks: [{ inf: "å lære", tense: "perf" }] },
+  { no: "Hun har ___ på sykehuset siden 2020.", es: "Ella trabaja en el hospital desde 2020.", blanks: [{ inf: "å jobbe", tense: "perf" }] },
+  { no: "Har dere ___ med læreren?", es: "¿Habéis hablado con el profesor?", blanks: [{ inf: "å snakke", tense: "perf" }] },
+  { no: "Jeg har ___ godt, og nå ___ jeg kaffe.", es: "He dormido bien y ahora bebo café.", blanks: [{ inf: "å sove", tense: "perf" }, { inf: "å drikke", tense: "pres" }] }
 ];
 
 /* ============================================================
@@ -1400,7 +1430,8 @@ const LEVEL_PASSWORDS = {
 
 let state = {
   settings: {
-    askA: true   // require å in infinitive
+    askA: true,     // require å in infinitive
+    askPerf: false  // show and ask the perfect tense (har + participle)
   },
   m1: {
     levelSize: 3,
@@ -1431,7 +1462,22 @@ let state = {
 function saveSettings() {
   const el = document.getElementById('setting-ask-a');
   if (el) state.settings.askA = el.checked;
+  const elPerf = document.getElementById('setting-ask-perf');
+  if (elPerf) state.settings.askPerf = elPerf.checked;
   saveState();
+}
+
+function onPerfToggle() {
+  saveSettings();
+  // Drop a sentence that asks for a tense that is no longer active
+  const sent = state.m3.currentSentence;
+  if (!state.settings.askPerf && sent && sent.blanks.some(b => b.tense === 'perf')) {
+    state.m3.currentSentence = null;
+    state.m3.awaitingNext = false;
+    state.m3.blankResults = null;
+    state.m3.pendingFeedback = null;
+  }
+  renderAll();
 }
 
 function saveState() {
@@ -1441,6 +1487,7 @@ function saveState() {
       m1Stats: state.m1.sessionStats,
       m1UnlockedLevel: state.m1.unlockedLevel,
       settingsAskA: state.settings.askA,
+      settingsAskPerf: state.settings.askPerf,
 	  m1Streak: state.m1.correctStreak
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persist));
@@ -1457,11 +1504,14 @@ function loadState() {
       if (obj.m1UnlockedLevel) state.m1.unlockedLevel = obj.m1UnlockedLevel;
 	  if (obj.m1Streak) state.m1.correctStreak = obj.m1Streak;
       if (typeof obj.settingsAskA === 'boolean') state.settings.askA = obj.settingsAskA;
+      if (typeof obj.settingsAskPerf === 'boolean') state.settings.askPerf = obj.settingsAskPerf;
     }
   } catch (e) {}
   // Sync settings toggle
   const el = document.getElementById('setting-ask-a');
   if (el) el.checked = state.settings.askA;
+  const elPerf = document.getElementById('setting-ask-perf');
+  if (elPerf) elPerf.checked = state.settings.askPerf;
 }
 
 function resetProgress() {
@@ -1488,7 +1538,7 @@ function resetProgress() {
 
 function normalize(s) {
   if (!s) return '';
-  return s.trim().toLowerCase()
+  return s.trim().toLowerCase().replace(/\s+/g, ' ')
     .replace(/æ/g, 'æ').replace(/ø/g, 'ø').replace(/å/g, 'å')
     // accept ascii substitutions
     .replace(/\bae\b/g, 'æ')
@@ -1506,6 +1556,33 @@ function compareForms(input, expected, alternates) {
 function getInfExpected(verbInf) {
   if (state.settings.askA) return verbInf; // full "å bo"
   return verbInf.replace(/^å /, '');        // just "bo"
+}
+
+// Verbs of movement / change of state that also take "er" in the perfect (er reist, er blitt)
+const ER_PERF_VERBS = new Set([
+  'å komme', 'å gå', 'å reise', 'å dra', 'å bli', 'å flytte', 'å falle',
+  'å forsvinne', 'å stige', 'å synke', 'å dø', 'å løpe', 'å fly', 'å vokse'
+]);
+
+// Expected perfect form: "har" + participle
+function getPerfExpected(verb) {
+  return 'har ' + verb.perf;
+}
+
+function getPerfAlternates(verb) {
+  const forms = [verb.perf, ...getAlternates(verb.perf)];
+  const aux = ER_PERF_VERBS.has(verb.inf) ? ['har', 'er'] : ['har'];
+  return aux.flatMap(a => forms.map(f => a + ' ' + f)).filter(f => f !== getPerfExpected(verb));
+}
+
+// Conjugation summary shown in the feedback boxes
+function formListHTML(verb) {
+  return `<div class="form-list">
+        <span>infinitivo:</span> <b>${escapeHtml(verb.inf)}</b> ·
+        <span>pres.:</span> <b>${escapeHtml(verb.pres)}</b> ·
+        <span>pret.:</span> <b>${escapeHtml(verb.pret)}</b>${state.settings.askPerf ? ` ·
+        <span>perf.:</span> <b>${escapeHtml(getPerfExpected(verb))}</b>` : ''}
+      </div>`;
 }
 
 function getAlternates(verbForm) {
@@ -1734,6 +1811,7 @@ function renderM1() {
 
   root.innerHTML = html;
   attachQuizHandlers('m1');
+  injectQuizFeedback('m1');
 }
 
 function renderM1Stats() {
@@ -1819,6 +1897,7 @@ function renderM2() {
 
   root.innerHTML = html;
   attachQuizHandlers('m2');
+  injectQuizFeedback('m2');
 }
 
 /* ============================================================
@@ -1827,9 +1906,10 @@ function renderM2() {
 
 function renderQuizCard(mod, verb, awaitingNext) {
   const res = state[mod].fieldResults;
+  const askPerf = state.settings.askPerf;
 
   function fieldHTML(id, labelNO, labelES, placeholder, resKey) {
-    if (awaitingNext && res) {
+    if (awaitingNext && res && res[resKey]) {
       const r = res[resKey];
       const cls = r.ok ? 'ok' : 'bad';
       const displayVal = r.ok ? escapeHtml(r.got) : escapeHtml(r.correct);
@@ -1847,13 +1927,14 @@ function renderQuizCard(mod, verb, awaitingNext) {
 
   return `<div class="card large">
     <span class="kicker">CONJUGA EN NORUEGO</span>
-    <div class="section-title">Escribe las tres formas de este verbo</div>
+    <div class="section-title">Escribe las ${askPerf ? 'cuatro' : 'tres'} formas de este verbo</div>
     <div class="infinitive-display" style="font-size:clamp(32px,5vw,52px);margin-bottom:6px;">${escapeHtml(verb.es)}</div>
 
-    <div class="input-grid" style="grid-template-columns:1fr 1fr 1fr;">
+    <div class="input-grid ${askPerf ? 'cols-4' : 'cols-3'}">
       ${fieldHTML(mod, 'Infinitiv', state.settings.askA ? 'å …' : 'sin å', 'infinitivo', 'inf')}
       ${fieldHTML(mod, 'Presens', 'presente', 'presente', 'pres')}
       ${fieldHTML(mod, 'Preteritum', 'pretérito', 'pretérito', 'pret')}
+      ${askPerf ? fieldHTML(mod, 'Perfektum', 'har …', 'perfecto', 'perf') : ''}
     </div>
 
     <div class="button-row">
@@ -1872,6 +1953,8 @@ function attachQuizHandlers(mod) {
   const inpInf  = document.getElementById(mod + '-inf');
   const inpPres = document.getElementById(mod + '-pres');
   const inpPret = document.getElementById(mod + '-pret');
+  const inpPerf = document.getElementById(mod + '-perf');
+  const lastInp = inpPerf || inpPret;
   if (inpInf) {
     inpInf.focus();
     inpInf.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (inpPres) inpPres.focus(); } });
@@ -1879,8 +1962,11 @@ function attachQuizHandlers(mod) {
   if (inpPres) {
     inpPres.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (inpPret) inpPret.focus(); } });
   }
-  if (inpPret) {
-    inpPret.addEventListener('keydown', e => { if (e.key === 'Enter') {
+  if (inpPerf && inpPret) {
+    inpPret.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); inpPerf.focus(); } });
+  }
+  if (lastInp) {
+    lastInp.addEventListener('keydown', e => { if (e.key === 'Enter') {
       e.preventDefault();
       const checkBtn = document.getElementById(mod + '-check');
       const nextBtn  = document.getElementById(mod + '-next');
@@ -1903,10 +1989,13 @@ function checkAnswer(mod) {
   const inpInf  = document.getElementById(mod + '-inf');
   const inpPres = document.getElementById(mod + '-pres');
   const inpPret = document.getElementById(mod + '-pret');
+  const inpPerf = document.getElementById(mod + '-perf');
+  const askPerf = state.settings.askPerf;
 
   const gotInf  = inpInf  ? inpInf.value.trim()  : '';
   const gotPres = inpPres ? inpPres.value.trim() : '';
   const gotPret = inpPret ? inpPret.value.trim() : '';
+  const gotPerf = inpPerf ? inpPerf.value.trim() : '';
 
   // Find which verb the user intended — try the current verb first,
   // then any synonym (same Spanish translation) that matches what was typed
@@ -1916,7 +2005,8 @@ function checkAnswer(mod) {
   );
 
   let matchedVerb = null;
-  let infOK = false, presOK = false, pretOK = false;
+  let infOK = false, presOK = false, pretOK = false, perfOK = true;
+  const checkPerf = v => !askPerf || compareForms(gotPerf, getPerfExpected(v), getPerfAlternates(v));
 
   for (const candidate of synonyms) {
     const stem = getInfExpected(candidate.inf);
@@ -1928,6 +2018,7 @@ function checkAnswer(mod) {
       infOK  = true;
       presOK = rOK;
       pretOK = tOK;
+      perfOK = checkPerf(candidate);
       break;
     }
   }
@@ -1937,6 +2028,7 @@ function checkAnswer(mod) {
     infOK  = false;
     presOK = compareForms(gotPres, verb.pres, getAlternates(verb.pres));
     pretOK = compareForms(gotPret, verb.pret, getAlternates(verb.pret));
+    perfOK = checkPerf(verb);
   }
 
   const verbStem = getInfExpected(matchedVerb.inf);
@@ -1947,6 +2039,7 @@ function checkAnswer(mod) {
     pres: { ok: presOK, got: gotPres, correct: matchedVerb.pres },
     pret: { ok: pretOK, got: gotPret, correct: matchedVerb.pret }
   };
+  if (askPerf) state[mod].fieldResults.perf = { ok: perfOK, got: gotPerf, correct: getPerfExpected(matchedVerb) };
 
   // If a synonym was accepted but it's not the "official" verb, note it
   const usedSynonym = matchedVerb.inf !== verb.inf;
@@ -1962,7 +2055,7 @@ function checkAnswer(mod) {
   state[mod].sessionStats.total += 1;
 
   let feedbackCls, feedbackHTML;
-  if (infOK && presOK && pretOK) {
+  if (infOK && presOK && pretOK && perfOK) {
     state[mod].sessionStats.correct += 1;
     if (mod === 'm1') {
       state.m1.correctStreak[verb.inf] = (state.m1.correctStreak[verb.inf] || 0) + 1;
@@ -1972,12 +2065,7 @@ function checkAnswer(mod) {
       ${groupTagHTML(matchedVerb.group)}
       ${synonymNote}
       ${matchedVerb.note ? `<div style="margin-top:8px;font-size:14px;font-style:italic;">${escapeHtml(matchedVerb.note)}</div>` : ''}
-      <div class="form-list">
-        <span>infinitivo:</span> <b>${escapeHtml(matchedVerb.inf)}</b> ·
-        <span>pres.:</span> <b>${escapeHtml(matchedVerb.pres)}</b> ·
-        <span>pret.:</span> <b>${escapeHtml(matchedVerb.pret)}</b> ·
-        <span>perf.:</span> <b>${escapeHtml(matchedVerb.perf)}</b>
-      </div>${allSynonymsHTML}
+      ${formListHTML(matchedVerb)}${allSynonymsHTML}
       <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`;
   } else {
     if (mod === 'm1') state.m1.correctStreak[verb.inf] = 0;
@@ -1985,6 +2073,7 @@ function checkAnswer(mod) {
     if (!infOK)  why.push('el <b>infinitivo</b>');
     if (!presOK) why.push('el <b>presente</b>');
     if (!pretOK) why.push('el <b>pretérito</b>');
+    if (!perfOK) why.push('el <b>pretérito perfecto</b>');
     feedbackCls = 'feedback incorrect show';
     // Show all accepted synonyms so the user knows what would be valid
     const acceptedList = synonyms.map(s => `<b>${escapeHtml(s.inf)}</b>`).join(', ');
@@ -1994,12 +2083,7 @@ function checkAnswer(mod) {
       ${synonyms.length > 1 ? `<div style="margin-top:6px;font-size:13px;">Infinitivos válidos: ${acceptedList}</div>` : ''}
       <div style="margin-top:8px;font-style:italic;">${explainGroup(matchedVerb)}</div>
       ${matchedVerb.note ? `<div style="margin-top:8px;font-size:14px;font-weight:500;">⚠ ${escapeHtml(matchedVerb.note)}</div>` : ''}
-      <div class="form-list">
-        <span>infinitivo:</span> <b>${escapeHtml(matchedVerb.inf)}</b> ·
-        <span>pres.:</span> <b>${escapeHtml(matchedVerb.pres)}</b> ·
-        <span>pret.:</span> <b>${escapeHtml(matchedVerb.pret)}</b> ·
-        <span>perf.:</span> <b>${escapeHtml(matchedVerb.perf)}</b>
-      </div>
+      ${formListHTML(matchedVerb)}
       <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`;
   }
 
@@ -2009,12 +2093,6 @@ function checkAnswer(mod) {
   if (mod === 'm1') renderM1();
   if (mod === 'm2') renderM2();
   updateMeta();
-
-  const fb = document.getElementById(mod + '-feedback');
-  if (fb && state[mod].pendingFeedback) {
-    fb.className = state[mod].pendingFeedback.cls;
-    fb.innerHTML = state[mod].pendingFeedback.html;
-  }
 }
 
 function revealAnswer(mod) {
@@ -2024,6 +2102,7 @@ function revealAnswer(mod) {
   const gotInf  = (document.getElementById(mod + '-inf')  || {}).value || '';
   const gotPres = (document.getElementById(mod + '-pres') || {}).value || '';
   const gotPret = (document.getElementById(mod + '-pret') || {}).value || '';
+  const gotPerf = (document.getElementById(mod + '-perf') || {}).value || '';
 
   // All synonyms for this verb
   const synonyms = VERBS.filter(v =>
@@ -2037,6 +2116,7 @@ function revealAnswer(mod) {
     pres: { ok: false, got: gotPres, correct: verb.pres },
     pret: { ok: false, got: gotPret, correct: verb.pret }
   };
+  if (state.settings.askPerf) state[mod].fieldResults.perf = { ok: false, got: gotPerf, correct: getPerfExpected(verb) };
 
   state[mod].sessionStats.total += 1;
   if (mod === 'm1') state.m1.correctStreak[verb.inf] = 0;
@@ -2048,12 +2128,7 @@ function revealAnswer(mod) {
       ${synonyms.length > 1 ? `<div style="margin-top:6px;font-size:13px;">Infinitivos válidos: ${acceptedList}</div>` : ''}
       <div style="margin-top:8px;font-style:italic;">${explainGroup(verb)}</div>
       ${verb.note ? `<div style="margin-top:8px;font-weight:500;">⚠ ${escapeHtml(verb.note)}</div>` : ''}
-      <div class="form-list">
-        <span>infinitivo:</span> <b>${escapeHtml(verb.inf)}</b> ·
-        <span>pres.:</span> <b>${escapeHtml(verb.pres)}</b> ·
-        <span>pret.:</span> <b>${escapeHtml(verb.pret)}</b> ·
-        <span>perf.:</span> <b>${escapeHtml(verb.perf)}</b>
-      </div>
+      ${formListHTML(verb)}
       <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContext('${mod}'))">⚑ Reportar error</button></div>`,
     amber: true
   };
@@ -2063,17 +2138,20 @@ function revealAnswer(mod) {
   if (mod === 'm1') renderM1();
   if (mod === 'm2') renderM2();
   updateMeta();
+}
 
+// Paint the feedback stored by checkAnswer/revealAnswer after a quiz card re-render
+function injectQuizFeedback(mod) {
   const fb = document.getElementById(mod + '-feedback');
-  if (fb && state[mod].pendingFeedback) {
-    fb.className = state[mod].pendingFeedback.cls;
-    if (state[mod].pendingFeedback.amber) {
-      fb.style.background = 'var(--bg-warm)';
-      fb.style.borderColor = 'var(--amber)';
-      fb.style.color = 'var(--ink)';
-    }
-    fb.innerHTML = state[mod].pendingFeedback.html;
+  const pending = state[mod].pendingFeedback;
+  if (!fb || !pending || !state[mod].awaitingNext) return;
+  fb.className = pending.cls;
+  if (pending.amber) {
+    fb.style.background = 'var(--bg-warm)';
+    fb.style.borderColor = 'var(--amber)';
+    fb.style.color = 'var(--ink)';
   }
+  fb.innerHTML = pending.html;
 }
 
 function nextQuestion(mod) {
@@ -2100,10 +2178,21 @@ function explainGroup(verb) {
    MODULE 3 - FILL IN THE BLANK
    ============================================================ */
 
+// Sentences available with the current settings (perfect-tense ones only when the toggle is on)
+function getActiveSentences() {
+  if (state.settings.askPerf) return SENTENCES;
+  return SENTENCES.filter(s => !s.blanks.some(b => b.tense === 'perf'));
+}
+
+function tenseName(tense) {
+  return { pres: 'presente', pret: 'pretérito', perf: 'perfecto', inf: 'infinitivo' }[tense] || tense;
+}
+
 function pickSentenceM3() {
-  let candidates = SENTENCES;
-  if (state.m3.currentSentence && SENTENCES.length > 1) {
-    candidates = SENTENCES.filter(s => s.no !== state.m3.currentSentence.no);
+  const pool = getActiveSentences();
+  let candidates = pool;
+  if (state.m3.currentSentence && pool.length > 1) {
+    candidates = pool.filter(s => s.no !== state.m3.currentSentence.no);
   }
   return pickRandom(candidates);
 }
@@ -2164,6 +2253,7 @@ function renderM3() {
     const tenseLabels = {
       'pres': { es: 'presente', cls: 'tense-pres' },
       'pret': { es: 'pretérito', cls: 'tense-pret' },
+      'perf': { es: 'perfecto (participio tras "har")', cls: 'tense-perf' },
       'inf':  { es: 'infinitivo (sin "å", tras modal)', cls: 'tense-inf' }
     };
     const tl = tenseLabels[b.tense];
@@ -2241,6 +2331,7 @@ function getExpectedFormForBlank(blank) {
   let val;
   if (blank.tense === 'pres') val = verb.pres;
   else if (blank.tense === 'pret') val = verb.pret;
+  else if (blank.tense === 'perf') val = verb.perf;
   else val = verb.inf.replace(/^å /, '');
   return { value: val, verb };
 }
@@ -2271,7 +2362,7 @@ function checkM3() {
     feedbackCls = 'feedback correct show';
     feedbackHTML = `<strong>Riktig! · Correcto</strong>
       <div style="margin-top:8px;">${details.map(d => {
-        const tn = d.tense === 'pres' ? 'presente' : d.tense === 'pret' ? 'pretérito' : 'infinitivo';
+        const tn = tenseName(d.tense);
         return `Hueco ${d.idx+1} (${tn}): <b>${escapeHtml(d.expected)}</b>`;
       }).join(' · ')}</div>
       <div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContextM3())">⚑ Reportar error</button></div>`;
@@ -2279,7 +2370,7 @@ function checkM3() {
     feedbackCls = 'feedback incorrect show';
     let fh = `<strong>Feil · Algunos huecos están mal</strong>`;
     for (const d of details) {
-      const tn = d.tense === 'pres' ? 'presente' : d.tense === 'pret' ? 'pretérito' : 'infinitivo';
+      const tn = tenseName(d.tense);
       fh += `<div style="margin-top:8px;"><b>Hueco ${d.idx+1}</b> (${tn} de ${escapeHtml(d.verb ? d.verb.inf : '?')}): `;
       if (d.ok) {
         fh += `<span style="color:var(--aurora);">✓ ${escapeHtml(d.expected)}</span>`;
@@ -2312,7 +2403,7 @@ function revealM3() {
   for (let i = 0; i < sent.blanks.length; i++) {
     const b = sent.blanks[i];
     const expected = getExpectedFormForBlank(b);
-    const tn = b.tense === 'pres' ? 'presente' : b.tense === 'pret' ? 'pretérito' : 'infinitivo';
+    const tn = tenseName(b.tense);
     html += `<div style="margin-top:8px;"><b>Hueco ${i+1}</b> (${tn} de ${escapeHtml(b.inf)}): <b>${escapeHtml(expected.value)}</b></div>`;
   }
   html += `<div style="margin-top:12px;"><button class="btn ghost" style="font-size:12px;padding:4px 10px;" onclick="reportError(buildReportContextM3())">⚑ Reportar error</button></div>`;
@@ -2355,6 +2446,7 @@ function renderM4() {
   </div>`;
 
   // Filter
+  const showPerf = state.settings.askPerf;
   const q = state.m4.search.trim().toLowerCase();
   let filtered = VERBS;
   if (q) {
@@ -2362,6 +2454,7 @@ function renderM4() {
       v.inf.toLowerCase().includes(q) ||
       v.pres.toLowerCase().includes(q) ||
       v.pret.toLowerCase().includes(q) ||
+      (showPerf && v.perf.toLowerCase().includes(q)) ||
       v.es.toLowerCase().includes(q)
     );
   }
@@ -2385,13 +2478,13 @@ function renderM4() {
 
   html += `<div class="dict-stats">${filtered.length} de ${VERBS.length} verbos</div>`;
 
-  html += `<div class="dict-table">`;
+  html += `<div class="dict-table${showPerf ? '' : ' no-perf'}">`;
   html += `<div class="dict-row header">
     <div>Gr</div>
     <div>Infinitivo</div>
     <div>Presens</div>
     <div>Preteritum</div>
-    <div>Perfektum</div>
+    ${showPerf ? '<div>Perfektum</div>' : ''}
     <div>Español</div>
   </div>`;
 
@@ -2403,7 +2496,7 @@ function renderM4() {
       <div>${escapeHtml(v.inf)}</div>
       <div>${escapeHtml(v.pres)}</div>
       <div>${escapeHtml(v.pret)}</div>
-      <div>${escapeHtml(v.perf)}</div>
+      ${showPerf ? `<div>${escapeHtml(getPerfExpected(v))}</div>` : ''}
       <div class="es">${escapeHtml(v.es)}</div>
     </div>`;
   }
@@ -2572,8 +2665,11 @@ function buildReportContext(mod) {
   const fi = document.getElementById(mod + '-inf');
   const fp = document.getElementById(mod + '-pres');
   const ft = document.getElementById(mod + '-pret');
-  const got = `inf="${fi ? fi.value : '?'}" pres="${fp ? fp.value : '?'}" pret="${ft ? ft.value : '?'}"`;
-  return `Módulo: ${mod} | Verbo: ${verb.inf} (${verb.es}) | Respuesta dada: ${got} | Correcto: inf="${verb.inf}" pres="${verb.pres}" pret="${verb.pret}"`;
+  const fk = document.getElementById(mod + '-perf');
+  const askPerf = state.settings.askPerf;
+  const got = `inf="${fi ? fi.value : '?'}" pres="${fp ? fp.value : '?'}" pret="${ft ? ft.value : '?'}"` + (askPerf ? ` perf="${fk ? fk.value : '?'}"` : '');
+  const correct = `inf="${verb.inf}" pres="${verb.pres}" pret="${verb.pret}"` + (askPerf ? ` perf="${getPerfExpected(verb)}"` : '');
+  return `Módulo: ${mod} | Verbo: ${verb.inf} (${verb.es}) | Respuesta dada: ${got} | Correcto: ${correct}`;
 }
 function buildReportContextM3() {
   const sent = state.m3.currentSentence;
