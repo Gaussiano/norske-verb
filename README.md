@@ -8,8 +8,9 @@ navegador mediante `localStorage`.
 
 ## Características
 
-- **297 verbos** en la base de datos, de los cuales **48** pertenecen a la lista
-  estructurada del curso A1.
+- **311 verbos** en la base de datos, de los cuales **48** pertenecen a la lista
+  estructurada del curso A1 y **17** se añadieron con el Kapittel 11
+  (*Språkpraksis*) del libro.
 - Clasificación por grupos de conjugación: Grupo 1 (-et), Grupo 2 (-te),
   Grupo 3 (-de), Grupo 4 (-dde) e irregulares.
 - Reconocimiento de **sinónimos**: si un verbo en español tiene varias
@@ -34,8 +35,9 @@ navegador mediante `localStorage`.
    anteriores, solo 1. Al dominar el nivel completo, ofrece avanzar al siguiente.
 2. **Práctica aleatoria** — Todos los verbos en orden mezclado, mismo formato de
    pregunta que el módulo 1.
-3. **Frases con huecos** — 73 frases de contexto (15 de ellas en pretérito
-   perfecto, que solo aparecen con el toggle activo) donde hay que escribir la forma
+3. **Frases con huecos** — 109 frases de contexto (15 de ellas en pretérito
+   perfecto, que solo aparecen con el toggle activo; 36 del Kapittel 11, que
+   muestran cada verbo con su preposición en contexto, sin preguntarla) donde hay que escribir la forma
    verbal correcta. La pista muestra solo el verbo en español; el tiempo verbal
    se revela al comprobar. Los fallos se marcan en rojo dentro de la frase.
 4. **Diccionario** — Búsqueda en vivo y tres ordenaciones: por categoría,
@@ -77,6 +79,18 @@ los inferiores). Botón "🔓 Desbloquear nivel" en el banner del módulo 1.
 | 8     | `midnattssol`   |
 | 9     | `grantreet`     |
 | 10    | `trollstigen`   |
+| 11    | `nordkapp`      |
+| 12    | `lofoten`       |
+| 13    | `hurtigruten`   |
+| 14    | `praksisplass`  |
+| 15    | `kollegaer`     |
+| 16    | `lagerhylle`    |
+| 17    | `arbeidsdag`    |
+
+Los niveles 1–13 cubren la lista del curso A1. A partir del 14 se añaden 3
+verbos extra por grupo y nivel; los verbos del Kapittel 11 van primero, así que
+ocupan los niveles **14–17**, de más fácil a más difícil (verbos simples →
+reflexivos → verbos con partícula como `å ordne opp` o `å vente på tur`).
 
 ## Uso local
 
@@ -107,8 +121,10 @@ en `https://TU_USUARIO.github.io/norske-verb/`.
   `pret`, `perf`, `group`, `es` (español) y, opcionalmente, `noter`/`noterOrder`
   (pertenencia y orden en la lista del curso A1) y `note` (excepciones).
 - **Frases**: array de objetos con `no` (frase noruega con `___`), `es`
-  (traducción) y `blanks` (verbo y tiempo de cada hueco: `pres`, `pret`, `perf`
-  o `inf`).
+  (traducción) y `blanks` (verbo y tiempo de cada hueco: `pres`, `pret`, `perf`,
+  `inf` o `imp` —imperativo, el infinitivo sin `å` ni `-e` final: `husk`,
+  `gjenta`—). Un hueco puede llevar `refl` (`"meg"`, `"oss"`…) para que el
+  pronombre reflexivo concuerde con el sujeto (`gleder seg` → `gleder meg`).
 
 ## Versionado
 
@@ -122,6 +138,17 @@ entrada más reciente del historial de abajo. Sigue **SemVer** (`MAJOR.MINOR.PAT
 | **MAJOR** (`→2.0.0`) | Cambio incompatible: estructura de `localStorage` o de la base de verbos que rompa el progreso guardado (requiere migración). |
 
 ## Historial de versiones
+
+- **v2.1.0** — Verbos del Kapittel 11 (*Språkpraksis*): 17 verbos nuevos
+  (`grue seg`, `mekke`, `ordne opp`, `fikse`, `nikke`, `lengte`, `trille`,
+  `konsentrere seg`, `fortjene`, `kalle`, `male`, `ønske seg`, `vente på tur`,
+  `puste ut`, `føle seg`, `ta imot`, `få øye på`) en los niveles 14–17 del
+  módulo 1, con contraseñas nuevas para los niveles 11–17. 36 frases nuevas
+  del libro en el módulo 3. Traducciones ampliadas en 7 verbos existentes
+  (`glede seg`, `huske`, `vise`, `kjenne`, `høre`, `stelle`, `bestille`).
+  `å klage` pasa a grupo 1 (`klaget`, como en el libro) y sigue aceptando
+  `klagde`/`klagd`. Nuevo tiempo `imp` (imperativo) y campo `refl` en los
+  huecos; corregida la frase «Vi ___ fram til ferien» (`gleder oss`).
 
 - **v2.0.0** — Pretérito perfecto (*perfektum*, `har` + participio) como
   nuevo tiempo opcional, controlado por un toggle en la barra superior

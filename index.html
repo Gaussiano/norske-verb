@@ -660,6 +660,7 @@ nav.tabs {
 .hint-row .h.tense-pret b { color: var(--amber); }
 .hint-row .h.tense-inf b { color: var(--aurora); }
 .hint-row .h.tense-perf b { color: #8a6b9c; }
+.hint-row .h.tense-imp b { color: var(--coral); }
 
 .translation-line {
   font-family: 'Fraunces', serif;
@@ -972,7 +973,7 @@ footer.foot a:hover { text-decoration: underline; }
 <footer class="foot">
   <p>Aprende noruego con paciencia, como el sol del invierno ártico —<br>
   poco a poco, pero seguro. <a id="reset-link">Reiniciar progreso</a></p>
-  <p style="margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;font-style:normal;letter-spacing:0.1em;opacity:0.6;">v2.0.0</p>
+  <p style="margin-top:8px;font-size:11px;font-family:'JetBrains Mono',monospace;font-style:normal;letter-spacing:0.1em;opacity:0.6;">v2.1.0</p>
 </footer>
 
 <!-- Modal overlay -->
@@ -1005,7 +1006,7 @@ const VERBS = [
   { inf: "å starte", pres: "starter", pret: "startet", perf: "startet", group: 1, es: "empezar", noter: true, noterOrder: 9 },
   { inf: "å lage", pres: "lager", pret: "laget", perf: "laget", group: 1, es: "preparar, hacer", noter: true, noterOrder: 10 },
   { inf: "å støvsuge", pres: "støvsuger", pret: "støvsuget", perf: "støvsuget", group: 1, es: "aspirar (el polvo)", noter: true, noterOrder: 11 },
-  { inf: "å glede seg", pres: "gleder seg", pret: "gledet seg", perf: "gledet seg", group: 1, es: "alegrarse, ilusionarse", noter: true, noterOrder: 12 },
+  { inf: "å glede seg", pres: "gleder seg", pret: "gledet seg", perf: "gledet seg", group: 1, es: "alegrarse, ilusionarse, tener ganas de", noter: true, noterOrder: 12 },
 
   // === GROUP 2 -te (Notater) ===
   { inf: "å spise", pres: "spiser", pret: "spiste", perf: "spist", group: 2, es: "comer", noter: true, noterOrder: 13 },
@@ -1051,6 +1052,29 @@ const VERBS = [
   { inf: "å forstå", pres: "forstår", pret: "forsto", perf: "forstått", group: "irr", es: "entender, comprender", noter: true, noterOrder: 47 },
 
   // ====== ADDITIONAL VERBS BEYOND THE NOTATER LIST ======
+  // Kapittel 11 (Språkpraksis) verbs go first in each group so they form levels 14–17
+  // of module 1 (3 extras per group and level), ordered from easier to harder.
+  // Group 1 — Kapittel 11
+  { inf: "å fikse", pres: "fikser", pret: "fikset", perf: "fikset", group: 1, es: "arreglar" },
+  { inf: "å mekke", pres: "mekker", pret: "mekket", perf: "mekket", group: 1, es: "trastear, trabajar en (algo mecánico)" },
+  { inf: "å nikke", pres: "nikker", pret: "nikket", perf: "nikket", group: 1, es: "asentir (a alguien)" },
+  { inf: "å lengte", pres: "lengter", pret: "lengtet", perf: "lengtet", group: 1, es: "añorar, echar de menos" },
+  { inf: "å trille", pres: "triller", pret: "trillet", perf: "trillet", group: 1, es: "empujar (algo con ruedas)" },
+  { inf: "å grue seg", pres: "gruer seg", pret: "gruet seg", perf: "gruet seg", group: 1, es: "temer, no tener ganas de" },
+  { inf: "å ønske seg", pres: "ønsker seg", pret: "ønsket seg", perf: "ønsket seg", group: 1, es: "desear, pedir (como regalo)" },
+  { inf: "å puste ut", pres: "puster ut", pret: "pustet ut", perf: "pustet ut", group: 1, es: "relajarse, respirar tranquilo" },
+  { inf: "å ordne opp", pres: "ordner opp", pret: "ordnet opp", perf: "ordnet opp", group: 1, es: "solucionar, arreglar (un problema)" },
+  { inf: "å vente på tur", pres: "venter på tur", pret: "ventet på tur", perf: "ventet på tur", group: 1, es: "esperar (tu turno)" },
+  // Group 2 -te — Kapittel 11
+  { inf: "å male", pres: "maler", pret: "malte", perf: "malt", group: 2, es: "pintar" },
+  { inf: "å kalle", pres: "kaller", pret: "kalte", perf: "kalt", group: 2, es: "llamar (dar un nombre)" },
+  { inf: "å fortjene", pres: "fortjener", pret: "fortjente", perf: "fortjent", group: 2, es: "merecer" },
+  { inf: "å føle seg", pres: "føler seg", pret: "følte seg", perf: "følt seg", group: 2, es: "sentirse" },
+  { inf: "å konsentrere seg", pres: "konsentrerer seg", pret: "konsentrerte seg", perf: "konsentrert seg", group: 2, es: "concentrarse en" },
+  // Irregular — Kapittel 11
+  { inf: "å ta imot", pres: "tar imot", pret: "tok imot", perf: "tatt imot", group: "irr", es: "recibir" },
+  { inf: "å få øye på", pres: "får øye på", pret: "fikk øye på", perf: "fått øye på", group: "irr", es: "ver de repente, divisar" },
+
   // Group 1
   { inf: "å bade", pres: "bader", pret: "badet", perf: "badet", group: 1, es: "bañarse" },
   { inf: "å banke", pres: "banker", pret: "banket", perf: "banket", group: 1, es: "golpear" },
@@ -1073,7 +1097,7 @@ const VERBS = [
   { inf: "å hindre", pres: "hindrer", pret: "hindret", perf: "hindret", group: 1, es: "impedir, prevenir" },
   { inf: "å hoppe", pres: "hopper", pret: "hoppet", perf: "hoppet", group: 1, es: "saltar" },
   { inf: "å hoste", pres: "hoster", pret: "hostet", perf: "hostet", group: 1, es: "toser" },
-  { inf: "å huske", pres: "husker", pret: "husket", perf: "husket", group: 1, es: "recordar" },
+  { inf: "å huske", pres: "husker", pret: "husket", perf: "husket", group: 1, es: "recordar, acordarse de" },
   { inf: "å håpe", pres: "håper", pret: "håpet", perf: "håpet", group: 1, es: "esperar (tener esperanza)" },
   { inf: "å jakte", pres: "jakter", pret: "jaktet", perf: "jaktet", group: 1, es: "cazar" },
   { inf: "å jogge", pres: "jogger", pret: "jogget", perf: "jogget", group: 1, es: "correr (jogging)" },
@@ -1135,13 +1159,14 @@ const VERBS = [
   { inf: "å ønske", pres: "ønsker", pret: "ønsket", perf: "ønsket", group: 1, es: "desear" },
   { inf: "å åpne", pres: "åpner", pret: "åpnet", perf: "åpnet", group: 1, es: "abrir" },
   { inf: "å pågripe", pres: "pågriper", pret: "pågrep", perf: "pågrepet", group: "irr", es: "arrestar, detener" },
+  { inf: "å klage", pres: "klager", pret: "klaget", perf: "klaget", group: 1, es: "quejarse, protestar", note: "También es correcto como verbo del grupo 3: klagde / klagd (se acepta)" },
 
   // Group 2 -te (extras)
   { inf: "å anbefale", pres: "anbefaler", pret: "anbefalte", perf: "anbefalt", group: 2, es: "recomendar" },
   { inf: "å bake", pres: "baker", pret: "bakte", perf: "bakt", group: 2, es: "hornear" },
   { inf: "å barbere seg", pres: "barberer seg", pret: "barberte seg", perf: "barbert seg", group: 2, es: "afeitarse" },
   { inf: "å bestemme", pres: "bestemmer", pret: "bestemte", perf: "bestemt", group: 2, es: "decidir" },
-  { inf: "å bestille", pres: "bestiller", pret: "bestilte", perf: "bestilt", group: 2, es: "pedir, encargar" },
+  { inf: "å bestille", pres: "bestiller", pret: "bestilte", perf: "bestilt", group: 2, es: "pedir, encargar, reservar" },
   { inf: "å besøke", pres: "besøker", pret: "besøkte", perf: "besøkt", group: 2, es: "visitar" },
   { inf: "å betale", pres: "betaler", pret: "betalte", perf: "betalt", group: 2, es: "pagar" },
   { inf: "å blåse", pres: "blåser", pret: "blåste", perf: "blåst", group: 2, es: "soplar" },
@@ -1158,10 +1183,10 @@ const VERBS = [
   { inf: "å glemme", pres: "glemmer", pret: "glemte", perf: "glemt", group: 2, es: "olvidar" },
   { inf: "å gratulere", pres: "gratulerer", pret: "gratulerte", perf: "gratulert", group: 2, es: "felicitar" },
   { inf: "å hende", pres: "hender", pret: "hendte", perf: "hendt", group: 2, es: "ocurrir, suceder" },
-  { inf: "å høre", pres: "hører", pret: "hørte", perf: "hørt", group: 2, es: "oír" },
+  { inf: "å høre", pres: "hører", pret: "hørte", perf: "hørt", group: 2, es: "oír, escuchar" },
   { inf: "å hvile", pres: "hviler", pret: "hvilte", perf: "hvilt", group: 2, es: "descansar" },
   { inf: "å invitere", pres: "inviterer", pret: "inviterte", perf: "invitert", group: 2, es: "invitar" },
-  { inf: "å kjenne", pres: "kjenner", pret: "kjente", perf: "kjent", group: 2, es: "conocer (a alguien); sentir" },
+  { inf: "å kjenne", pres: "kjenner", pret: "kjente", perf: "kjent", group: 2, es: "conocer (a alguien); sentir; reconocer (kjenne igjen)" },
   { inf: "å klare", pres: "klarer", pret: "klarte", perf: "klart", group: 2, es: "poder, conseguir" },
   { inf: "å klemme", pres: "klemmer", pret: "klemte", perf: "klemt", group: 2, es: "abrazar, apretar" },
   { inf: "å klippe", pres: "klipper", pret: "klipte", perf: "klipt", group: 2, es: "cortar (con tijeras)" },
@@ -1196,7 +1221,7 @@ const VERBS = [
   { inf: "å smile", pres: "smiler", pret: "smilte", perf: "smilt", group: 2, es: "sonreír" },
   { inf: "å spare", pres: "sparer", pret: "sparte", perf: "spart", group: 2, es: "ahorrar" },
   { inf: "å steke", pres: "steker", pret: "stekte", perf: "stekt", group: 2, es: "freír, asar" },
-  { inf: "å stelle", pres: "steller", pret: "stelte", perf: "stelt", group: 2, es: "cuidar, atender" },
+  { inf: "å stelle", pres: "steller", pret: "stelte", perf: "stelt", group: 2, es: "cuidar, atender, ocuparse de" },
   { inf: "å stemme", pres: "stemmer", pret: "stemte", perf: "stemt", group: 2, es: "votar; afinar; ser correcto" },
   { inf: "å stille", pres: "stiller", pret: "stilte", perf: "stilt", group: 2, es: "poner, colocar" },
   { inf: "å svare", pres: "svarer", pret: "svarte", perf: "svart", group: 2, es: "responder" },
@@ -1211,13 +1236,12 @@ const VERBS = [
   { inf: "å unnskylde", pres: "unnskylder", pret: "unnskyldte", perf: "unnskyldt", group: 2, es: "disculpar(se)" },
   { inf: "å utføre", pres: "utfører", pret: "utførte", perf: "utført", group: 2, es: "ejecutar, llevar a cabo" },
   { inf: "å uttale", pres: "uttaler", pret: "uttalte", perf: "uttalt", group: 2, es: "pronunciar" },
-  { inf: "å vise", pres: "viser", pret: "viste", perf: "vist", group: 2, es: "mostrar" },
+  { inf: "å vise", pres: "viser", pret: "viste", perf: "vist", group: 2, es: "mostrar, enseñar (algo a alguien)" },
   { inf: "å øke", pres: "øker", pret: "økte", perf: "økt", group: 2, es: "aumentar" },
 
   // Group 3 -de (extras)
   { inf: "å bygge", pres: "bygger", pret: "bygde", perf: "bygd", group: 3, es: "construir" },
   { inf: "å greie", pres: "greier", pret: "greide", perf: "greid", group: 3, es: "arreglárselas, conseguir" },
-  { inf: "å klage", pres: "klager", pret: "klagde", perf: "klagd", group: 3, es: "quejarse, protestar" },
   { inf: "å kreve", pres: "krever", pret: "krevde", perf: "krevd", group: 3, es: "exigir, requerir" },
   { inf: "å oppleve", pres: "opplever", pret: "opplevde", perf: "opplevd", group: 3, es: "experimentar, vivir (algo)" },
   { inf: "å veie", pres: "veier", pret: "veide", perf: "veid", group: 3, es: "pesar" },
@@ -1379,7 +1403,7 @@ const SENTENCES = [
   { no: "I sommer ___ vi til Italia.", es: "Este verano viajamos a Italia.", blanks: [{ inf: "å reise", tense: "pres" }] },
   { no: "For tre dager siden ___ jeg en epost.", es: "Hace tres días envié un correo.", blanks: [{ inf: "å sende", tense: "pret" }] },
   { no: "Han ___ alltid før han spiser.", es: "Él siempre se lava las manos antes de comer.", blanks: [{ inf: "å vaske", tense: "pres" }] },
-  { no: "Vi ___ fram til ferien.", es: "Nos hace ilusión las vacaciones.", blanks: [{ inf: "å glede seg", tense: "pres" }] },
+  { no: "Vi ___ fram til ferien.", es: "Nos hace ilusión las vacaciones.", blanks: [{ inf: "å glede seg", tense: "pres", refl: "oss" }] },
   { no: "Jeg ___ i Spania da jeg var liten.", es: "Vivía en España cuando era pequeño.", blanks: [{ inf: "å bo", tense: "pret" }] },
   { no: "Vil du ___ med meg?", es: "¿Quieres bailar conmigo?", blanks: [{ inf: "å danse", tense: "inf" }] },
   { no: "Han ___ meg en bok i fjor.", es: "Me regaló un libro el año pasado.", blanks: [{ inf: "å gi", tense: "pret" }] },
@@ -1406,7 +1430,44 @@ const SENTENCES = [
   { no: "Jeg har ___ mye norsk i år.", es: "He aprendido mucho noruego este año.", blanks: [{ inf: "å lære", tense: "perf" }] },
   { no: "Hun har ___ på sykehuset siden 2020.", es: "Ella trabaja en el hospital desde 2020.", blanks: [{ inf: "å jobbe", tense: "perf" }] },
   { no: "Har dere ___ med læreren?", es: "¿Habéis hablado con el profesor?", blanks: [{ inf: "å snakke", tense: "perf" }] },
-  { no: "Jeg har ___ godt, og nå ___ jeg kaffe.", es: "He dormido bien y ahora bebo café.", blanks: [{ inf: "å sove", tense: "perf" }, { inf: "å drikke", tense: "pres" }] }
+  { no: "Jeg har ___ godt, og nå ___ jeg kaffe.", es: "He dormido bien y ahora bebo café.", blanks: [{ inf: "å sove", tense: "perf" }, { inf: "å drikke", tense: "pres" }] },
+  // Kapittel 11 — Språkpraksis (verb + preposición en contexto; la preposición no se pregunta)
+  { no: "Jeg ___ til at familien min kommer til Norge.", es: "Tengo ganas de que mi familia venga a Noruega.", blanks: [{ inf: "å glede seg", tense: "pres", refl: "meg" }] },
+  { no: "Adil ___ til å stå opp fordi han begynner klokka sju.", es: "A Adil le da pereza levantarse porque empieza a las siete.", blanks: [{ inf: "å grue seg", tense: "pres" }] },
+  { no: "Faren min ___ på bilen når han har fri.", es: "Mi padre trastea con el coche cuando tiene el día libre.", blanks: [{ inf: "å mekke", tense: "pres" }] },
+  { no: "Jeg ___ om bussen kommer snart.", es: "Compruebo si el autobús llega pronto.", blanks: [{ inf: "å sjekke", tense: "pres" }] },
+  { no: "Sjefen sa at han skulle ___ i problemet.", es: "El jefe dijo que iba a solucionar el problema.", blanks: [{ inf: "å ordne opp", tense: "inf" }] },
+  { no: "Karim ___ sykkelen som var ødelagt.", es: "Karim arregló la bici que estaba rota.", blanks: [{ inf: "å fikse", tense: "pret" }] },
+  { no: "Barna ___ en hund til bursdagen.", es: "Los niños pidieron un perro para su cumpleaños.", blanks: [{ inf: "å ønske seg", tense: "pret" }] },
+  { no: "Jeg ___ at jeg får jobb etter praksisen.", es: "Espero conseguir trabajo después de las prácticas.", blanks: [{ inf: "å håpe", tense: "pres" }] },
+  { no: "Emma ___ til kollegaene selv om hun ikke forstår.", es: "Emma asiente a sus compañeros aunque no entiende.", blanks: [{ inf: "å nikke", tense: "pres" }] },
+  { no: "Karim ___ etter barna sine da han bodde alene.", es: "Karim echaba de menos a sus hijos cuando vivía solo.", blanks: [{ inf: "å lengte", tense: "pret" }] },
+  { no: "Vi må ___ når det er mange folk.", es: "Tenemos que esperar nuestro turno cuando hay mucha gente.", blanks: [{ inf: "å vente på tur", tense: "inf" }] },
+  { no: "Adil ___ på at han må stå opp tidlig.", es: "Adil se queja de que tiene que levantarse temprano.", blanks: [{ inf: "å klage", tense: "pres" }] },
+  { no: "Hun ___ barnevogna til barnehagen hver morgen.", es: "Lleva el carrito a la guardería cada mañana.", blanks: [{ inf: "å trille", tense: "pres" }] },
+  { no: "___ på at vi har norskkurs i morgen!", es: "¡Acuérdate de que mañana tenemos clase de noruego!", blanks: [{ inf: "å huske", tense: "imp" }] },
+  { no: "Vi kan ___ når testen er ferdig.", es: "Podemos relajarnos cuando termine el examen.", blanks: [{ inf: "å puste ut", tense: "inf" }] },
+  { no: "Jeg ___ Karim da jeg begynte på norskkurset.", es: "Conocí a Karim cuando empecé el curso de noruego.", blanks: [{ inf: "å møte", tense: "pret" }] },
+  { no: "Kollegaen ___ meg hvor lageret var.", es: "El compañero me enseñó dónde estaba el almacén.", blanks: [{ inf: "å vise", tense: "pret" }] },
+  { no: "Jeg ___ ham ikke igjen fordi han hadde skjegg.", es: "No lo reconocí porque tenía barba.", blanks: [{ inf: "å kjenne", tense: "pret" }] },
+  { no: "Karim ___ ensom fordi familien hans ikke var her.", es: "Karim se sentía solo porque su familia no estaba aquí.", blanks: [{ inf: "å føle seg", tense: "pret" }] },
+  { no: "Jeg ___ på radio når jeg lager mat.", es: "Escucho la radio cuando cocino.", blanks: [{ inf: "å høre", tense: "pres" }] },
+  { no: "Jeg ___ ofte på familien min når jeg er alene.", es: "Pienso a menudo en mi familia cuando estoy solo.", blanks: [{ inf: "å tenke", tense: "pres" }] },
+  { no: "Sjefen ___ meg for kollegaene som jobber på lageret.", es: "El jefe me presentó a los compañeros que trabajan en el almacén.", blanks: [{ inf: "å presentere", tense: "pret" }] },
+  { no: "Det er vanskelig å ___ om norsken når man er trøtt.", es: "Es difícil concentrarse en el noruego cuando uno está cansado.", blanks: [{ inf: "å konsentrere seg", tense: "inf" }] },
+  { no: "Sofia mener at hun ___ lønn fordi hun gjør en god jobb.", es: "Sofía opina que merece un sueldo porque hace un buen trabajo.", blanks: [{ inf: "å fortjene", tense: "pres" }] },
+  { no: "Karim ___ barna sine da de kom til Norge.", es: "Karim abrazó a sus hijos cuando llegaron a Noruega.", blanks: [{ inf: "å klemme", tense: "pret" }] },
+  { no: "Jeg liker å ___ med blomstene når jeg har fri.", es: "Me gusta cuidar las flores cuando tengo tiempo libre.", blanks: [{ inf: "å stelle", tense: "inf" }] },
+  { no: "Vi ___ ham for Kim, men han heter Karim.", es: "Le llamamos Kim, pero se llama Karim.", blanks: [{ inf: "å kalle", tense: "pres" }] },
+  { no: "Jeg må ___ time hos legen fordi jeg er syk.", es: "Tengo que pedir cita con el médico porque estoy enfermo.", blanks: [{ inf: "å bestille", tense: "inf" }] },
+  { no: "Vi ___ stua mens barna er på skolen.", es: "Pintamos el salón mientras los niños están en el colegio.", blanks: [{ inf: "å male", tense: "pres" }] },
+  { no: "Når vannet ___, legger du i pastaen.", es: "Cuando el agua hierve, echas la pasta.", blanks: [{ inf: "å koke", tense: "pres" }] },
+  { no: "De ___ en ny skole der jeg bor.", es: "Están construyendo un colegio nuevo donde vivo.", blanks: [{ inf: "å bygge", tense: "pres" }] },
+  { no: "Samira ___ gjestene da de kom.", es: "Samira recibió a los invitados cuando llegaron.", blanks: [{ inf: "å ta imot", tense: "pret" }] },
+  { no: "Da jeg ___ Adil, vinket jeg til ham.", es: "Cuando vi a Adil, lo saludé con la mano.", blanks: [{ inf: "å få øye på", tense: "pret" }] },
+  { no: "Deltakerne ___ om erfaringene sine i Showbie.", es: "Los participantes escriben sobre sus experiencias en Showbie.", blanks: [{ inf: "å skrive", tense: "pres" }] },
+  { no: "Læreren sier: «___ etter meg!»", es: "El profesor dice: «¡Repetid después de mí!»", blanks: [{ inf: "å gjenta", tense: "imp" }] },
+  { no: "Barna ___ for foreldrene sine på festen i barnehagen.", es: "Los niños cantaron para sus padres en la fiesta de la guardería.", blanks: [{ inf: "å synge", tense: "pret" }] }
 ];
 
 /* ============================================================
@@ -1415,7 +1476,7 @@ const SENTENCES = [
 
 const STORAGE_KEY = 'norske_verb_progress_v1';
 
-// Level unlock passwords (level 2..10)
+// Level unlock passwords (level 2..17). Levels 14–17 hold the Kapittel 11 verbs.
 const LEVEL_PASSWORDS = {
   2:  'nordlys',
   3:  'fjordvei',
@@ -1425,7 +1486,14 @@ const LEVEL_PASSWORDS = {
   7:  'isbjorn',
   8:  'midnattssol',
   9:  'grantreet',
-  10: 'trollstigen'
+  10: 'trollstigen',
+  11: 'nordkapp',
+  12: 'lofoten',
+  13: 'hurtigruten',
+  14: 'praksisplass',
+  15: 'kollegaer',
+  16: 'lagerhylle',
+  17: 'arbeidsdag'
 };
 
 let state = {
@@ -1600,7 +1668,8 @@ function getAlternates(verbForm) {
     'dro': ['drog'],
     'drog': ['dro'],
     'beit': ['bet'],
-    'bet': ['beit']
+    'bet': ['beit'],
+    'klaget': ['klagde', 'klagd']   // å klage: -et (libro) o -de (grupo 3)
   };
   return alts[verbForm] || [];
 }
@@ -2185,7 +2254,7 @@ function getActiveSentences() {
 }
 
 function tenseName(tense) {
-  return { pres: 'presente', pret: 'pretérito', perf: 'perfecto', inf: 'infinitivo' }[tense] || tense;
+  return { pres: 'presente', pret: 'pretérito', perf: 'perfecto', inf: 'infinitivo', imp: 'imperativo' }[tense] || tense;
 }
 
 function pickSentenceM3() {
@@ -2254,7 +2323,8 @@ function renderM3() {
       'pres': { es: 'presente', cls: 'tense-pres' },
       'pret': { es: 'pretérito', cls: 'tense-pret' },
       'perf': { es: 'perfecto (participio tras "har")', cls: 'tense-perf' },
-      'inf':  { es: 'infinitivo (sin "å", tras modal)', cls: 'tense-inf' }
+      'inf':  { es: 'infinitivo (sin "å", tras modal)', cls: 'tense-inf' },
+      'imp':  { es: 'imperativo (raíz del verbo)', cls: 'tense-imp' }
     };
     const tl = tenseLabels[b.tense];
     if (state.m3.awaitingNext) {
@@ -2332,7 +2402,15 @@ function getExpectedFormForBlank(blank) {
   if (blank.tense === 'pres') val = verb.pres;
   else if (blank.tense === 'pret') val = verb.pret;
   else if (blank.tense === 'perf') val = verb.perf;
+  else if (blank.tense === 'imp') {
+    // Imperative = infinitive without å and without the final unstressed -e (huske → husk, gjenta → gjenta)
+    const words = verb.inf.replace(/^å /, '').split(' ');
+    words[0] = words[0].replace(/e$/, '');
+    val = words.join(' ');
+  }
   else val = verb.inf.replace(/^å /, '');
+  // Reflexive pronoun that agrees with the subject (gleder seg → gleder meg)
+  if (blank.refl) val = val.replace(/\bseg\b/, blank.refl);
   return { value: val, verb };
 }
 
